@@ -9,6 +9,13 @@ class Company extends Model
 {
     use HasFactory;
 
+    protected $fillable = [
+        'name',
+        'description',
+        'address',
+        'phone',
+        'user_id',
+    ];
     public function owner(){
         return $this->belongsTo(User::class, 'user_id');
     }

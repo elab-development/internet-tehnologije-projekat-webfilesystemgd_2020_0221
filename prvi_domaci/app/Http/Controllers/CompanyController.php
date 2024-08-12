@@ -11,8 +11,9 @@ class CompanyController extends Controller
      * Display a listing of the resource.
      */
     public function index()
-    {
-        return Company::all();
+    {   
+        $companies = Company::all();
+        return response()->json($companies);
     }
 
     /**
@@ -28,20 +29,18 @@ class CompanyController extends Controller
      */
     public function store(Request $request)
     {
-        $request->validate([
+        $fields=$request->validate([
             "name"=>"required|string|max:255",
-            "description"=>"string|max:255",
-            "address"=>"required|string|max:255",
-            "phone"=>"string|max:20"
+            "description"=>"nullable|string|max:255",
+            "address"=>"nullable|string|max:255",
+            "phone"=>"nullable|string|max:20",
+            "user_id"=>"required|exists:users,id"
         ]);
-        $company = Company::create([
-            "name"=>$request->name,
-            "description"=>$request->description,
-            "address"=>$request->address,
-            "phone"=>$request->phone,
-            "user_id"=>$request->user_id,
-        ]);
-        return response()->json(['Company is created successfully.',$company]);
+        $company = Company::create($fields);
+        return response()->json([
+            'message' => 'Company created successfully.',
+            'company' => $company
+        ], 201);
     }
 
     /**
@@ -69,22 +68,19 @@ class CompanyController extends Controller
      */
     public function update(Request $request, string $id)
     {
-        $request->validate([
+        $validated=$request->validate([
             "name"=>"required|string|max:255",
-            "description"=>"string|max:255",
-            "address"=>"required|string|max:255",
-            "phone"=>"string|max:20"
+            "description"=>"nullable|string|max:255",
+            "address"=>"nullable|string|max:255",
+            "phone"=>"nullable|string|max:20",
+            "user_id"=>"required|exists:users,id"
         ]);
         $company = Company::find($id);
         if(is_null($company)){
             return response()->json("Company not found.",404);
         }
-        $company->name=$request->name;
-        $company->description=$request->description;
-        $company->address=$request->address;
-        $company->phone=$request->phone;
-        $company->save();
-        return \response()->json("Company is successfully updated.",$company);
+       $company->update($validated);
+       return response()->json(['message' => 'Company updated successfully', 'company' => $company], 200);
     }
 
     /**
@@ -93,6 +89,6 @@ class CompanyController extends Controller
     public function destroy(Company $company)
     {
         $company->delete();
-        return response()->json("Company is deleted.");
+        return response()->json(['message' => 'Company deleted successfully'], 200);
     }
 }
