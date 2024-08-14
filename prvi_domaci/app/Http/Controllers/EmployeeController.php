@@ -2,8 +2,10 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
 use App\Models\Employee;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class EmployeeController extends Controller
 {
@@ -34,6 +36,17 @@ class EmployeeController extends Controller
             'position'=>'required|string|max:255',
             'company_id'=>'required|exists:companies,id'
         ]);
+        $company = Company::find($validated['company_id']);
+
+        // Provera da li kompanija postoji
+        if (is_null($company)) {
+            return response()->json(['message' => 'Company not found.'], 404);
+        }
+    
+        // Provera da li je trenutni korisnik vlasnik kompanije
+        if ($company->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized.'], 403);
+        }
         $employee = Employee::create($validated);
         return response()->json([
             'message' => 'Employee created successfully.',
@@ -77,10 +90,23 @@ class EmployeeController extends Controller
         if(is_null($employee)){
             return response()->json("Employee not found.",404);
         }
+
+        $company = Company::find($validated['company_id']);
+        if (is_null($company)) {
+            return response()->json(['message' => 'Company not found.'], 404);
+        }
+    
+        // Provera da li je trenutni korisnik vlasnik kompanije
+        if ($company->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized.'], 403);
+        }
+
+
         $employee->update($validated);
 
         return response()->json(['message' => 'Employee updated successfully', 'employee' => $employee], 200);
-    }
+    
+}
 
     /**
      * Remove the specified resource from storage.

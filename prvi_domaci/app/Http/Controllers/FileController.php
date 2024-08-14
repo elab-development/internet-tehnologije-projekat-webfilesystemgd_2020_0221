@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\File;
 use Illuminate\Http\Request;
+use Illuminate\Support\Facades\Auth;
 
 class FileController extends Controller
 {
@@ -34,9 +35,9 @@ class FileController extends Controller
             'path'=>'required|string|max:255',
             'mime_type'=>'required|string|max:255',
             'google_drive_id'=>'required|string|max:255',
-            'size'=>'required|numeric|min:0',
-            'user_id'=>'required|exists:users,id'
+            'size'=>'required|numeric|min:0'
         ]);
+        $validated['user_id']=Auth::id();
         $file = File::create($validated);
         return response()->json([
             'message' => 'File created successfully.',
@@ -76,11 +77,13 @@ class FileController extends Controller
             'mime_type'=>'required|string|max:255',
             'google_drive_id'=>'required|string|max:255',
             'size'=>'required|numeric|min:0',
-            'user_id'=>'required|exists:users,id'
         ]);
         $file = File::find($id);
         if(is_null($file)){
             return response()->json("File not found.",404);
+        }
+        if ($file->user_id !== Auth::id()) {
+            return response()->json(['message' => 'Unauthorized.'], 403);
         }
         $file->update($validated);
         return response()->json(['message' => 'File updated successfully', 'file' => $file], 200);
