@@ -34,7 +34,9 @@ class EmployeeController extends Controller
         $validated=$request->validate([
             'name'=>'required|string|max:255',
             'position'=>'required|string|max:255',
-            'company_id'=>'required|exists:companies,id'
+            'company_id'=>'required|exists:companies,id',
+            'email'=>'required|string|email|unique:employees',
+            'password'=>'required|string|min:8'
         ]);
         $company = Company::find($validated['company_id']);
 
@@ -47,6 +49,7 @@ class EmployeeController extends Controller
         if ($company->user_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized.'], 403);
         }
+        $validated['password'] = bcrypt($validated['password']);
         $employee = Employee::create($validated);
         return response()->json([
             'message' => 'Employee created successfully.',

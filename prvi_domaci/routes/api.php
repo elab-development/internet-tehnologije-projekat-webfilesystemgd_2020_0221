@@ -1,6 +1,7 @@
 <?php
 
 use App\Http\Controllers\API\AuthController;
+use App\Http\Controllers\API\EmployeeAuthController;
 use App\Http\Controllers\CompanyController;
 use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FileController;
@@ -16,7 +17,7 @@ use Illuminate\Support\Facades\Route;
 //     return $request->user();
 // })->middleware('auth:sanctum');
 
-Route::middleware('auth:sanctum')->group(function () {
+Route::middleware(['auth:sanctum','check_if_user'])->group(function () {
     // Ruta za profil korisnika
     Route::get('/profile', function (Request $request) {
         return $request->user();
@@ -26,14 +27,10 @@ Route::middleware('auth:sanctum')->group(function () {
     Route::post('/employees',[EmployeeController::class,'store']);
     Route::put('/employees/{id}',[EmployeeController::class,'update']);
     Route::delete('/employees/{id}',[EmployeeController::class,'destroy']);
-
-    Route::apiResource('/files',FileController::class)->only(['store','update','destroy']);
-    Route::apiResource('/privileges',PrivilegeController::class)->only(['store','update','destroy']);
-
-
-
+    Route::apiResource('/privileges',PrivilegeController::class)->only(['store','update','destroy']); 
 });
 
+Route::apiResource('/files',FileController::class)->only(['store','update','destroy'])->middleware("auth:sanctum");
 //USER RUTE
 Route::get('/users',[UserController::class,'index']);
 Route::get('/users/{id}',[UserController::class,'show']);
@@ -62,3 +59,7 @@ Route::get('/privileges/{id}',[PrivilegeController::class,'show']);
 Route::post('/register',[AuthController::class,'register']);
 Route::post('/login',[AuthController::class,'login']);
 Route::post('/logout',[AuthController::class,'logout'])->middleware('auth:sanctum');
+
+//EMPLOYEEAUTH
+Route::post('/employee/login',[EmployeeAuthController::class,'login']);
+Route::post('/employee/logout',[EmployeeAuthController::class,'logout'])->middleware('auth:sanctum');
