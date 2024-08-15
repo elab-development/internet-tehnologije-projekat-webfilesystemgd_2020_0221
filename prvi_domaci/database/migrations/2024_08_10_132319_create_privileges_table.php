@@ -17,7 +17,7 @@ return new class extends Migration
             $table->foreignId('file_id')->constrained()->onDelete('cascade'); 
             $table->boolean('can_view')->default(false); 
             $table->boolean('can_edit')->default(false); 
-            $table->boolean('can_delete')->default(false); 
+             
             $table->timestamps();
         });
     }

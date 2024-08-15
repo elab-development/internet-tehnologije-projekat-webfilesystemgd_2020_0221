@@ -34,7 +34,7 @@ class PrivilegeController extends Controller
             'file_id' => 'required|exists:files,id',
             'can_view' => 'boolean',
             'can_edit' => 'boolean',
-            'can_delete' => 'boolean',
+            
         ]);
 
         $privilege = Privilege::create($validated);
@@ -72,7 +72,7 @@ class PrivilegeController extends Controller
             'file_id' => 'required|exists:files,id',
             'can_view' => 'boolean',
             'can_edit' => 'boolean',
-            'can_delete' => 'boolean',
+            
         ]);
         $privilege = Privilege::find($id);
         if(is_null($privilege)){
