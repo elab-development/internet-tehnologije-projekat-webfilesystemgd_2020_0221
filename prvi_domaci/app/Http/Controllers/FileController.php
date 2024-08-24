@@ -108,10 +108,10 @@ class FileController extends Controller
     {
        $validated= $request->validate([
             'name'=>'required|string|max:255',
-            'path'=>'required|string|max:255',
-            'mime_type'=>'required|string|max:255',
-            'google_drive_id'=>'required|string|max:255',
-            'size'=>'required|numeric|min:0',
+            'path'=>'nullable|string|max:255',
+            'mime_type'=>'nullable|string|max:255',
+            'google_drive_id'=>'nullable|string|max:255',
+            'size'=>'nullable|numeric|min:0',
         ]);
         $file = File::find($id);
         if(is_null($file)){

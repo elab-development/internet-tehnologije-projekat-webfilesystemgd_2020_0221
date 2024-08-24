@@ -3,6 +3,7 @@ import "./LoginRegister.css";
 import email_icon from "../Assets/email.png";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
+import { useNavigate } from "react-router-dom";
 
 function LoginRegister() {
   const [action, setAction] = useState("");
@@ -12,6 +13,7 @@ function LoginRegister() {
   const loginLink = () => {
     setAction("");
   };
+  let navigate = useNavigate();
   // const [role, setRole] = useState("user");
   return (
     <div className={`wrapper ${action}`}>
@@ -33,7 +35,14 @@ function LoginRegister() {
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button type="submit">Login</button>
+          <button
+            type="submit"
+            onClick={() => {
+              navigate("/");
+            }}
+          >
+            Login
+          </button>
           <div className="register-link">
             <p>
               Don't have an account?{" "}
@@ -46,7 +55,12 @@ function LoginRegister() {
       </div>
 
       <div className="form-box register">
-        <form action="">
+        <form
+          onSubmit={() => {
+            navigate("/createCompany");
+          }}
+          action=""
+        >
           <h1>Registration</h1>
           <div className="input-box">
             <input type="text" placeholder="Username" required />

@@ -68,8 +68,8 @@ class PrivilegeController extends Controller
     public function update(Request $request, string $id)
     {
         $validated = $request->validate([
-            'employee_id' => 'required|exists:employees,id',
-            'file_id' => 'required|exists:files,id',
+            'employee_id' => 'nullable|exists:employees,id',
+            'file_id' => 'nullable|exists:files,id',
             'can_view' => 'boolean',
             'can_edit' => 'boolean',
             

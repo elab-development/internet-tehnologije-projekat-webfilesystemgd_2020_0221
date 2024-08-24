@@ -2,16 +2,18 @@
   position: relative;
   width: 420px;
   height: 450px;
-  background: transparent;
+  background: #333;
   border: 2px solid rgna(255, 255, 255, 0.1);
-  backdrop-filter: blur(30px);
-  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2);
+  /* backdrop-filter: blur(30px);
+  box-shadow: 0 0 10px rgba(0, 0, 0, 0.2); */
   border-radius: 10px;
   color: #fff;
   display: flex;
   align-items: center;
   overflow: hidden;
   transition: height 0.18s ease;
+  margin-top: 100px;
+  margin-left: 550px;
 }
 .wrapper.active {
   height: 520px;
@@ -22,7 +24,7 @@
 }
 
 .wrapper .form-box.login {
-  transition: transalte 0.18s ease;
+  transition: translate 0.18s ease;
   translate: 0;
 }
 
@@ -38,7 +40,7 @@
 }
 
 .wrapper.active .form-box.register {
-  transition: transalte 0.18s ease;
+  transition: translate 0.18s ease;
   translate: 0;
 }
 

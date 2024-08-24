@@ -1,11 +1,22 @@
-import "./App.css";
+import { useState } from "react";
 import LoginRegister from "./Components/LoginRegister/LoginRegister";
+import Navbar from "./Components/Navbar/Navbar.jsx";
+import { BrowserRouter, Routes, Route } from "react-router-dom";
+import "./index.css";
+import Company from "./Components/Company/Company.jsx";
+import Home from "./Components/Home/Home.jsx";
 
 function App() {
   return (
-    <div>
-      <LoginRegister />
-    </div>
+    <BrowserRouter className="container">
+      <Routes>
+        <Route path="/loginRegister" element={<LoginRegister />} />
+        <Route path="/createCompany" element={<Company />} />
+        <Route path="/" element={<Navbar />}>
+          <Route path="" element={<Home />} />
+        </Route>
+      </Routes>
+    </BrowserRouter>
   );
 }
 
