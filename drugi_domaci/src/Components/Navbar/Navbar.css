@@ -59,3 +59,8 @@ ul li {
   width: 20px;
   cursor: pointer;
 }
+
+.navbar-link {
+  text-decoration: none;
+  color: black;
+}

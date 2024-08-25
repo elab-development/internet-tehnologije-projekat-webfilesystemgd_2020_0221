@@ -2,7 +2,7 @@ import "./Navbar.css";
 import React from "react";
 import search_w from "../Assets/search-w.png";
 import logo_b from "../Assets/logo-black.png";
-import { Outlet } from "react-router-dom";
+import { Link, Outlet } from "react-router-dom";
 
 function Navbar() {
   return (
@@ -11,7 +11,9 @@ function Navbar() {
         <img src={logo_b} alt="" className="logo" />
         <ul>
           <li>Home</li>
-          <li>Employees</li>
+          <li>
+            <Link to="/employees" className="navbar-link">Employees</Link>
+          </li>
           <li>Files</li>
           <li>Profile</li>
         </ul>
