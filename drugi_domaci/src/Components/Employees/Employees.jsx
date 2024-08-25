@@ -1,5 +1,6 @@
 import { useState } from "react";
 import Employee from "./Employee";
+import "./Employees.css";
 
 function Employees() {
   const employeesData = [
@@ -20,7 +21,6 @@ function Employees() {
     },
   ];
   const [employees, setEmployees] = useState(employeesData);
-  console.log("test");
   return (
     <div className="employees-container">
       {employees.map((element) => (

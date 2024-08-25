@@ -1,0 +1,30 @@
+.employee-line {
+  display: flex;
+  gap: 10px;
+  margin-bottom: 10px;
+  justify-content: center;
+}
+
+.employee-information h1 {
+  color: rgb(49, 93, 108);
+}
+
+.employee-information {
+  color: rgb(179, 146, 84);
+}
+
+.employee-card {
+  background-color: #f7f7f7;
+  display: flex;
+  padding-top: 10px;
+  padding-left: 10px;
+  width: 50vw;
+  border-radius: 10px;
+  justify-content: space-between;
+}
+
+.employee-buttons {
+  display: flex;
+  flex-direction: column;
+  gap: 20px;
+}
