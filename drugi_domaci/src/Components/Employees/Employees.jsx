@@ -1,33 +1,63 @@
-import { useState } from "react";
+import { useEffect, useState } from "react";
 import Employee from "./Employee";
 import "./Employees.css";
 
 function Employees() {
-  const employeesData = [
-    {
-      name: "Pera Peric",
-      position: "Cleaning Crew Team Lead",
-      email: "pperic@email.com",
-    },
-    {
-      name: "Mika Mikic",
-      position: "Senior Coffee Provider",
-      email: "mmikic@email.com",
-    },
-    {
-      name: "Zika Zikic",
-      position: "Scrum Slave",
-      email: "zzikic@email.com",
-    },
-  ];
-  const [employees, setEmployees] = useState(employeesData);
+  const [employees, setEmployees] = useState(null);
+
+  useEffect(() => {
+    fetch("http://localhost:8000/employees").then((response) => {
+      if (!response.ok) {
+        throw new Error("Server error");
+      }
+      response
+        .json()
+        .then((data) => {
+          setEmployees(data);
+        })
+        .catch((error) => {
+          console.error(error);
+        });
+    });
+  }, []);
+
+  const handleEdit = (position, id) => {
+    fetch(`http://localhost:8000/employees/${id}`, {
+      method: "PATCH",
+      headers: { "Content-Type": "application/json" },
+      body: JSON.stringify({ position: position }),
+    })
+      .then(() => {
+        return fetch(`http://localhost:8000/employees`);
+      })
+      .then((response) => response.json())
+      .then((data) => {
+        setEmployees(data);
+        // Update your state or UI with the fetched employees data
+      })
+      .catch((error) => console.error("Error:", error));
+  };
+
+  const handleRemove = (id) => {
+    fetch(`http://localhost:8000/employees/${id}`, {
+      method: "DELETE",
+    }).then(() => {
+      const newEmployees = employees.filter((employee) => employee.id !== id);
+      setEmployees(newEmployees);
+    });
+  };
   return (
     <div className="employees-container">
-      {employees.map((element) => (
-        <Employee employee={element}></Employee>
-      ))}
+      {employees &&
+        employees.map((element) => (
+          <Employee
+            key={element.id}
+            employee={element}
+            handleRemove={handleRemove}
+            handleEdit={handleEdit}
+          />
+        ))}
     </div>
   );
 }
-
 export default Employees;

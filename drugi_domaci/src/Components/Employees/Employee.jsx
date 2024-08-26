@@ -1,12 +1,13 @@
 import Button from "../Button/Button";
 import "./Employee.css";
+import EditModal from "./EditModal";
+import { useState } from "react";
 
-function Employee({ employee }) {
-  const handleEdit = () => {
-    console.log("Edit");
-  };
-  const handleRemove = () => {
-    console.log("Remove");
+function Employee({ employee, handleRemove, handleEdit }) {
+  const [showModal, setShowModal] = useState(false);
+
+  const toggleModal = () => {
+    setShowModal(!showModal);
   };
   return (
     <div className="employee-card">
@@ -26,9 +27,15 @@ function Employee({ employee }) {
       </div>
 
       <div className="employee-buttons">
-        <Button text="Edit Position" handleClick={handleEdit} />
-        <Button text="Remove" handleClick={handleRemove} />
+        <Button text="Edit Position" handleClick={toggleModal} />
+        <Button text="Remove" handleClick={() => handleRemove(employee.id)} />
       </div>
+      <EditModal
+        show={showModal}
+        onClose={toggleModal}
+        handleEdit={handleEdit}
+        id={employee.id}
+      />
     </div>
   );
 }
