@@ -22,6 +22,7 @@ function Employees() {
   }, []);
 
   const handleEdit = (position, id) => {
+    if (!position) return;
     fetch(`http://localhost:8000/employees/${id}`, {
       method: "PATCH",
       headers: { "Content-Type": "application/json" },

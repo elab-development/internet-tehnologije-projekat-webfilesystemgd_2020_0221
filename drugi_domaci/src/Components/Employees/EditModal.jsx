@@ -24,6 +24,7 @@ function EditModal({ show, onClose, handleEdit, id }) {
               name="name"
               value={position}
               onChange={(e) => setPosition(e.target.value)}
+              required
             />
           </div>
           <button onClick={handleClick} className="submit-btn" type="submit">
