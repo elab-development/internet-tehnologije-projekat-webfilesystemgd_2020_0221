@@ -16,7 +16,7 @@ function EditModal({ show, onClose, handleEdit, id }) {
       <div className="modal-content">
         <h2>Change position</h2>
         <form>
-          <div className="input-box">
+          <div className="modal-input-box">
             <label htmlFor="name">Position:</label>
             <input
               type="text"
