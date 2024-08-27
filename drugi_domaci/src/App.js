@@ -6,6 +6,7 @@ import "./index.css";
 import Company from "./Components/Company/Company.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Employees from "./Components/Employees/Employees.jsx";
+import Files from "./Components/Files/Files.jsx";
 
 function App() {
   return (
@@ -31,12 +32,14 @@ function App() {
     //   </div>
     // </Router>
     <BrowserRouter className="container">
-      <Navbar />
       <Routes>
-        <Route exact path="/" element={<Home />} />
+        <Route path="" element={<Navbar />}>
+          <Route path="/" element={<Home />} />
+          <Route path="/employees" element={<Employees />} />
+          <Route path="/files" element={<Files />} />
+        </Route>
         <Route path="/loginRegister" element={<LoginRegister />} />
         <Route path="/createCompany" element={<Company />} />
-        <Route path="/employees" element={<Employees />} />
       </Routes>
     </BrowserRouter>
   );

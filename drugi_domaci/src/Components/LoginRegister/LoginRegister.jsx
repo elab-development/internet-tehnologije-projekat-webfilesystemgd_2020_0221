@@ -18,7 +18,12 @@ function LoginRegister() {
   return (
     <div className={`wrapper ${action}`}>
       <div className="form-box login">
-        <form action="">
+        <form
+          onSubmit={() => {
+            navigate("/");
+          }}
+          action=""
+        >
           <h1>Login</h1>
           <div className="input-box">
             <input type="text" placeholder="Username" required />
@@ -35,14 +40,7 @@ function LoginRegister() {
             </label>
             <a href="#">Forgot password?</a>
           </div>
-          <button
-            type="submit"
-            onClick={() => {
-              navigate("/");
-            }}
-          >
-            Login
-          </button>
+          <button type="submit">Login</button>
           <div className="register-link">
             <p>
               Don't have an account?{" "}

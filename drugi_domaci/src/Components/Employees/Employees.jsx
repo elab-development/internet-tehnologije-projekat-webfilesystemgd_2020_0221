@@ -29,7 +29,7 @@ function Employees() {
       body: JSON.stringify({ position: position }),
     })
       .then(() => {
-        return fetch(`http://localhost:8000/employees`);
+        return fetch("http://localhost:8000/employees");
       })
       .then((response) => response.json())
       .then((data) => {

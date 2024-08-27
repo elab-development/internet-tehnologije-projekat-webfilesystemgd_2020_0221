@@ -20,16 +20,20 @@ function Navbar() {
               Employees
             </Link>
           </li>
-          <li>Files</li>
+          <li>
+            <Link to="/files" className="navbar-link">
+              Files
+            </Link>
+          </li>
           <li>Profile</li>
         </ul>
         <div className="search-box">
           <input type="text" placeholder="Serach" />
           <img src={search_w} alt="" />
         </div>
-        <a href="/loginRegister" className="logout">
+        <Link to="/loginRegister" className="logout">
           Logout
-        </a>
+        </Link>
       </div>
       <Outlet />
     </div>
