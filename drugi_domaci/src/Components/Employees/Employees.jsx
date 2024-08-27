@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import Employee from "./Employee";
 import "./Employees.css";
 
-function Employees() {
+function Employees({ user }) {
   const [employees, setEmployees] = useState(null);
 
   useEffect(() => {

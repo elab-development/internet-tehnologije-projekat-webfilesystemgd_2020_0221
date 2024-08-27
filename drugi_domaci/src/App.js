@@ -1,4 +1,4 @@
-import { useState } from "react";
+import { useState, useEffect } from "react";
 import LoginRegister from "./Components/LoginRegister/LoginRegister";
 import Navbar from "./Components/Navbar/Navbar.jsx";
 import { BrowserRouter, Routes, Route, Router } from "react-router-dom";
@@ -9,37 +9,42 @@ import Employees from "./Components/Employees/Employees.jsx";
 import Files from "./Components/Files/Files.jsx";
 
 function App() {
+  const [user, setUser] = useState(() => {
+    const savedUser = localStorage.getItem("user");
+    return savedUser ? JSON.parse(savedUser) : null;
+  });
+
+  const [company, setCompany] = useState(null);
+  useEffect(() => {
+    if (user) {
+      localStorage.setItem("user", JSON.stringify(user)); //kad se refresuje stranica, user ostaje ulogovan
+      fetch(`http://localhost:8000/companies?user_id=${user.id}`)
+        .then((response) => response.json())
+        .then((data) => {
+          if (data.length > 0) {
+            setCompany(data[0]);
+          }
+        })
+        .catch((error) => console.error("Error fetching company:", error));
+    }
+  }, [user]);
+
   return (
-    // <Router>
-    //   <div className="App">
-    //     <Navbar />
-    //     <div className="content">
-    //       <Switch>
-    //         <Route exact path="/">
-    //           <Home />
-    //         </Route>
-    //         <Route path="/create">
-    //           <Create />
-    //         </Route>
-    //         <Route path="/blogs/:id">
-    //           <BlogDetails />
-    //         </Route>
-    //         <Route path="*">
-    //           <NotFound />
-    //         </Route>
-    //       </Switch>
-    //     </div>
-    //   </div>
-    // </Router>
     <BrowserRouter className="container">
       <Routes>
         <Route path="" element={<Navbar />}>
-          <Route path="/" element={<Home />} />
+          <Route path="/" element={<Home company={company} />} />
           <Route path="/employees" element={<Employees />} />
           <Route path="/files" element={<Files />} />
         </Route>
-        <Route path="/loginRegister" element={<LoginRegister />} />
-        <Route path="/createCompany" element={<Company />} />
+        <Route
+          path="/loginRegister"
+          element={<LoginRegister setUser={setUser} />}
+        />
+        <Route
+          path="/createCompany"
+          element={<Company user={user} setCompany={setCompany} />}
+        />
       </Routes>
     </BrowserRouter>
   );

@@ -2,7 +2,7 @@ import React, { useState } from "react";
 import { useNavigate } from "react-router-dom";
 import "./Company.css";
 
-function Company() {
+function Company({ user, setCompany }) {
   let navigate = useNavigate();
   const [name, setName] = useState("");
   const [address, setAddress] = useState("");
@@ -11,9 +11,30 @@ function Company() {
 
   const handleSubmit = (e) => {
     e.preventDefault();
-    // Ovde možeš dodati logiku za slanje podataka na server
-    console.log({ name, address, phone, description });
-    navigate("/");
+    fetch("http://localhost:8000/companies", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name,
+        address,
+        phone,
+        description,
+        user_id: user.id,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
+        const data = response.json();
+        setCompany(data);
+      })
+      .then(() => {
+        navigate("/");
+      })
+      .catch((error) => console.error("Error:", error));
   };
 
   return (
