@@ -28,7 +28,7 @@ function Employee({ employee, handleRemove, handleEdit }) {
 
       <div className="employee-buttons">
         <Button text="Edit Position" handleClick={toggleModal} />
-        <Button text="Remove" handleClick={() => handleRemove(employee.id)} />
+        <Button text="Remove" handleClick={() => handleRemove(employee?.id)} />
       </div>
       <EditModal
         show={showModal}

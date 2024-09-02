@@ -2,9 +2,14 @@ import "./Navbar.css";
 import React from "react";
 import search_w from "../Assets/search-w.png";
 import logo_b from "../Assets/logo-black.png";
-import { Link, Outlet } from "react-router-dom";
+import { Link, Outlet, useNavigate } from "react-router-dom";
 
 function Navbar() {
+  const navigate = useNavigate();
+  const handleLogout = () => {
+    localStorage.removeItem("user");
+    navigate("/loginRegister");
+  };
   return (
     <div>
       <div className="navbar">
@@ -31,9 +36,9 @@ function Navbar() {
           <input type="text" placeholder="Serach" />
           <img src={search_w} alt="" />
         </div>
-        <Link to="/loginRegister" className="logout">
+        <button onClick={handleLogout} className="logout">
           Logout
-        </Link>
+        </button>
       </div>
       <Outlet />
     </div>

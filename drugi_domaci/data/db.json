@@ -1,30 +1,71 @@
 {
   "employees": [
     {
-      "name": "Pera Peric",
-      "position": "Bog otac",
-      "email": "pperic@email.com",
-      "id": "1",
-      "password": "pera123"
-    },
-    {
       "name": "Zika Zikic",
-      "position": "Ssvemirac",
+      "position": "Ribolovac",
       "email": "zzikic@email.com",
       "id": "3",
-      "password": "zika123"
+      "password": "zika123",
+      "company_id": "3"
+    },
+    {
+      "id": "08da",
+      "name": "Nikola Zigic",
+      "position": "Menadzer",
+      "email": "nikola123@gmail.com",
+      "password": "nikola123",
+      "company_id": "3"
+    },
+    {
+      "id": "69e8",
+      "name": "Milka Canic",
+      "position": "menadzerka",
+      "email": "milka@gmail.com",
+      "passowrd": "milka123",
+      "company_id": "3"
+    },
+    {
+      "id": "ec26",
+      "name": "Yettel",
+      "position": "Yettel",
+      "email": "ye@gmai.com",
+      "passowrd": "sssss",
+      "company_id": "3"
+    },
+    {
+      "id": "62cf",
+      "name": "per",
+      "position": "SADAS",
+      "email": "sad@gmail.cpm",
+      "passowrd": "sdasdad",
+      "company_id": "3"
+    },
+    {
+      "id": "11c8",
+      "name": "Zorica",
+      "position": "cistacica",
+      "email": "zoka@gmail.com",
+      "passowrd": "zoka123",
+      "company_id": "2"
+    },
+    {
+      "id": "236c",
+      "name": "Veljko",
+      "position": "Sef",
+      "email": "veljko@gmail.com",
+      "passowrd": "veljko123",
+      "company_id": "2"
+    },
+    {
+      "id": "bccc",
+      "name": "Nada",
+      "position": "domacica",
+      "email": "nada@gmail.com",
+      "passowrd": "nada123",
+      "company_id": "2"
     }
   ],
   "files": [
-    {
-      "id": "1",
-      "name": "nekifajl.pdf",
-      "mime_type": "application/pdf",
-      "size": 102400,
-      "path": "/files/document1.pdf",
-      "created_at": "2023-10-01T12:00:00Z",
-      "updated_at": "2023-10-01T12:00:00Z"
-    },
     {
       "id": "2",
       "name": "image2.png",
@@ -85,7 +126,7 @@
   ],
   "companies": [
     {
-      "id": "0133",
+      "id": "1",
       "name": "Yettel",
       "address": "Omladisnkih Brigada 96",
       "phone": "381 65 9986 236",
@@ -109,7 +150,7 @@
       "user_id": "2"
     },
     {
-      "id": "3e94",
+      "id": "4",
       "name": "dsdsd",
       "address": "dsdsd",
       "phone": "sdsds",

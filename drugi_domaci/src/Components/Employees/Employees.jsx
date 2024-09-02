@@ -2,24 +2,26 @@ import { useEffect, useState } from "react";
 import Employee from "./Employee";
 import "./Employees.css";
 
-function Employees({ user }) {
-  const [employees, setEmployees] = useState(null);
+function Employees({ company, setEmployeesCount }) {
+  const [employees, setEmployees] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/employees").then((response) => {
-      if (!response.ok) {
-        throw new Error("Server error");
-      }
-      response
-        .json()
+    if (company?.id) {
+      fetch(`http://localhost:8000/employees?company_id=${company.id}`)
+        .then((response) => {
+          if (!response.ok) {
+            throw new Error("Server error");
+          }
+          return response.json();
+        })
         .then((data) => {
           setEmployees(data);
         })
         .catch((error) => {
           console.error(error);
         });
-    });
-  }, []);
+    }
+  }, [company]);
 
   const handleEdit = (position, id) => {
     if (!position) return;
@@ -45,6 +47,7 @@ function Employees({ user }) {
     }).then(() => {
       const newEmployees = employees.filter((employee) => employee.id !== id);
       setEmployees(newEmployees);
+      setEmployeesCount(newEmployees.length);
     });
   };
   return (
