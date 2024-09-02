@@ -2,6 +2,7 @@ import { React, useState } from "react";
 import "./Home.css";
 import Button from "../Button/Button";
 import AddEmployeeModal from "../Employees/AddEmployeeModal";
+import AddFileModal from "../Files/AddFileModal";
 
 function Home({ company, employeesCount, setEmployeesCount }) {
   const company_id = company?.id;
@@ -34,14 +35,42 @@ function Home({ company, employeesCount, setEmployeesCount }) {
 
     setEmployeesCount(employeesCount + 1);
   };
-  const addFile = () => {
-    console.log("Add File");
+  const addFile = ({ name, mime_type, size, path }) => {
+    fetch("http://localhost:8000/files", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        name: name,
+        mime_type: mime_type,
+        size: size,
+        path: path,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
   };
 
-  const [showModal, setShowModal] = useState(false);
+  const [showModalEmployee, setShowModalEmployee] = useState(false);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
+  const toggleModalEmployee = () => {
+    setShowModalEmployee(!showModalEmployee);
+  };
+
+  const [showModalFile, setShowModalFile] = useState(false);
+  const toggleModalFile = () => {
+    setShowModalFile(!showModalFile);
   };
 
   return (
@@ -50,14 +79,20 @@ function Home({ company, employeesCount, setEmployeesCount }) {
       <p className="employee-count">Number of Employees: {employeesCount}</p>
 
       <div className="quick-links">
-        <Button handleClick={toggleModal} text={"Add New Employee"} />
-        <Button handleClick={addFile} text={"Add New File"} />
+        <Button handleClick={toggleModalEmployee} text={"Add New Employee"} />
+        <Button handleClick={toggleModalFile} text={"Add New File"} />
       </div>
       <AddEmployeeModal
-        show={showModal}
-        onClose={toggleModal}
+        show={showModalEmployee}
+        onClose={toggleModalEmployee}
         handleAdd={addEmployee}
         company_id={company_id}
+      />
+
+      <AddFileModal
+        show={showModalFile}
+        onClose={toggleModalFile}
+        handleAdd={addFile}
       />
     </div>
   );
