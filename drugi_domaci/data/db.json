@@ -1,0 +1,167 @@
+{
+  "employees": [
+    {
+      "name": "Zika Zikic",
+      "position": "Ribolovac",
+      "email": "zzikic@email.com",
+      "id": "3",
+      "password": "zika123",
+      "company_id": "3"
+    },
+    {
+      "id": "08da",
+      "name": "Nikola Zigic",
+      "position": "Menadzer",
+      "email": "nikola123@gmail.com",
+      "password": "nikola123",
+      "company_id": "3"
+    },
+    {
+      "id": "69e8",
+      "name": "Milka Canic",
+      "position": "menadzerka",
+      "email": "milka@gmail.com",
+      "passowrd": "milka123",
+      "company_id": "3"
+    },
+    {
+      "id": "ec26",
+      "name": "Yettel",
+      "position": "Yettel",
+      "email": "ye@gmai.com",
+      "passowrd": "sssss",
+      "company_id": "3"
+    },
+    {
+      "id": "62cf",
+      "name": "per",
+      "position": "SADAS",
+      "email": "sad@gmail.cpm",
+      "passowrd": "sdasdad",
+      "company_id": "3"
+    },
+    {
+      "id": "11c8",
+      "name": "Zorica",
+      "position": "cistacica",
+      "email": "zoka@gmail.com",
+      "passowrd": "zoka123",
+      "company_id": "2"
+    },
+    {
+      "id": "236c",
+      "name": "Veljko",
+      "position": "Sef",
+      "email": "veljko@gmail.com",
+      "passowrd": "veljko123",
+      "company_id": "2"
+    },
+    {
+      "id": "bccc",
+      "name": "Nada",
+      "position": "domacica",
+      "email": "nada@gmail.com",
+      "passowrd": "nada123",
+      "company_id": "2"
+    }
+  ],
+  "files": [
+    {
+      "id": "2",
+      "name": "image2.png",
+      "mime_type": "image/png",
+      "size": 204800,
+      "path": "/files/image1.png",
+      "created_at": "2023-10-02T12:00:00Z",
+      "updated_at": "2023-10-02T12:00:00Z"
+    },
+    {
+      "id": "4",
+      "name": "video1.mp4",
+      "mime_type": "video/mp4",
+      "size": 10485760,
+      "path": "/files/video1.mp4",
+      "created_at": "2023-10-04T12:00:00Z",
+      "updated_at": "2023-10-04T12:00:00Z"
+    },
+    {
+      "id": "5",
+      "name": "archive1.zip",
+      "mime_type": "application/zip",
+      "size": 2048000,
+      "path": "/files/archive1.zip",
+      "created_at": "2023-10-05T12:00:00Z",
+      "updated_at": "2023-10-05T12:00:00Z"
+    },
+    {
+      "id": "9e20",
+      "name": "slike.jpg",
+      "size": "5000",
+      "path": "C/users/pictures"
+    }
+  ],
+  "users": [
+    {
+      "id": "1",
+      "name": "John Doe",
+      "email": "john_doe@example.com",
+      "password": "hashed_password_1",
+      "created_at": "2023-10-01T12:00:00Z",
+      "updated_at": "2023-10-01T12:00:00Z"
+    },
+    {
+      "id": "2",
+      "name": "Jane Smith",
+      "email": "jane_smith@example.com",
+      "password": "hashed_password_2",
+      "created_at": "2023-10-02T12:00:00Z",
+      "updated_at": "2023-10-02T12:00:00Z"
+    },
+    {
+      "id": "4f7a",
+      "name": "Sanja",
+      "email": "sanja123@gmail.cpm",
+      "password": "sanja123"
+    },
+    {
+      "id": "afd8",
+      "name": "stefan",
+      "email": "stefan@gmail.com",
+      "password": "stefan123"
+    }
+  ],
+  "companies": [
+    {
+      "id": "1",
+      "name": "Yettel",
+      "address": "Omladisnkih Brigada 96",
+      "phone": "381 65 9986 236",
+      "description": "sdasdasdasdasdasas",
+      "user_id": "4f7a"
+    },
+    {
+      "id": "2",
+      "name": "Mts",
+      "address": "Niksicka 12",
+      "phone": "381 64 231 84 96",
+      "description": "Ovo je lepa kompanija",
+      "user_id": "1"
+    },
+    {
+      "id": "3",
+      "name": "SBB",
+      "address": "Nikole Pasica 12",
+      "phone": "391 45 84 96",
+      "description": "ovo je najlepse",
+      "user_id": "2"
+    },
+    {
+      "id": "4",
+      "name": "dsdsd",
+      "address": "dsdsd",
+      "phone": "sdsds",
+      "description": "dsdsdsd",
+      "user_id": "afd8"
+    }
+  ]
+}

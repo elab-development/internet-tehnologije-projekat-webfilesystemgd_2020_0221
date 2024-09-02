@@ -1,0 +1,14 @@
+* {
+  margin: 0;
+  padding: 0;
+  box-sizing: border-box;
+  font-family: sans-serif;
+}
+/*
+body {
+  display: flex;
+  justify-content: center;
+  min-height: 100vh;
+  background: #5d5d5d;
+  align-items: center;
+} */
