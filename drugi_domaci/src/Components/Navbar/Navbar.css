@@ -3,7 +3,7 @@
   display: flex;
   align-items: center;
   justify-content: space-between;
-  background: #e4e2e2;
+  background: #cccad4;
   padding: 15px 7%;
   box-shadow: 0 2px 5px rgba(0, 0, 0, 0.1);
 }
@@ -29,9 +29,10 @@ ul li {
 .logout {
   display: inline-block;
   margin: 10px 20px;
-  font-size: 18px;
+  /* margin-left: auto; */
+  font-size: 35px;
   cursor: pointer;
-  text-decoration: none;
+  color: black;
 }
 
 .search-box {

@@ -4,8 +4,9 @@ import Button from "../Button/Button";
 import AddEmployeeModal from "../Employees/AddEmployeeModal";
 import AddFileModal from "../Files/AddFileModal";
 
-function Home({ company, employeesCount, setEmployeesCount }) {
+function Home({ company, employeesCount, setEmployeesCount, user_id }) {
   const company_id = company?.id;
+
   const addEmployee = ({ name, position, email, password, company_id }) => {
     fetch("http://localhost:8000/employees", {
       method: "POST",
@@ -35,7 +36,7 @@ function Home({ company, employeesCount, setEmployeesCount }) {
 
     setEmployeesCount(employeesCount + 1);
   };
-  const addFile = ({ name, mime_type, size, path }) => {
+  const addFile = ({ name, mime_type, size, path, user_id }) => {
     fetch("http://localhost:8000/files", {
       method: "POST",
       headers: {
@@ -46,6 +47,7 @@ function Home({ company, employeesCount, setEmployeesCount }) {
         mime_type: mime_type,
         size: size,
         path: path,
+        user_id: user_id,
       }),
     })
       .then((response) => {
@@ -93,6 +95,7 @@ function Home({ company, employeesCount, setEmployeesCount }) {
         show={showModalFile}
         onClose={toggleModalFile}
         handleAdd={addFile}
+        user_id={user_id}
       />
     </div>
   );

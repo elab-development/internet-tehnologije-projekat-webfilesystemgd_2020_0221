@@ -2,24 +2,28 @@ import React, { useState, useEffect } from "react";
 import File from "./File";
 import styles from "./Files.module.css";
 
-function Files() {
-  const [files, setFiles] = useState(null);
+function Files({ user }) {
+  const [files, setFiles] = useState([]);
 
   useEffect(() => {
-    fetch("http://localhost:8000/files").then((response) => {
-      if (!response.ok) {
-        throw new Error("Server error");
-      }
-      response
-        .json()
-        .then((data) => {
-          setFiles(data);
-        })
-        .catch((error) => {
-          console.error(error);
-        });
-    });
-  }, []);
+    if (user?.id) {
+      fetch(`http://localhost:8000/files?user_id=${user.id}`).then(
+        (response) => {
+          if (!response.ok) {
+            throw new Error("Server error");
+          }
+          response
+            .json()
+            .then((data) => {
+              setFiles(data);
+            })
+            .catch((error) => {
+              console.error(error);
+            });
+        }
+      );
+    }
+  }, [user]);
 
   const handleEdit = (fileName, id) => {
     if (!fileName) return;

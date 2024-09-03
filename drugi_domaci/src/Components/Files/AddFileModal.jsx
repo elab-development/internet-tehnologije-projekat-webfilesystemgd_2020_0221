@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./AddFileModal.module.css";
 import { useState } from "react";
 
-function AddFileModal({ show, onClose, handleAdd }) {
+function AddFileModal({ show, onClose, handleAdd, user_id }) {
   const [name, setName] = useState("");
   const [mimeType, setMimeType] = useState("");
   const [size, setSize] = useState("");
@@ -12,11 +12,7 @@ function AddFileModal({ show, onClose, handleAdd }) {
   }
 
   const handleClick = () => {
-    handleAdd({ name, mimeType, size, path });
-    setName("");
-    setMimeType("");
-    setSize("");
-    setPath("");
+    handleAdd({ name, mimeType, size, path, user_id });
   };
   return (
     <div className={styles.container}>
@@ -44,7 +40,7 @@ function AddFileModal({ show, onClose, handleAdd }) {
             />
             <label htmlFor="name">Size:</label>
             <input
-              type="email"
+              type="text"
               id="size"
               name="name"
               value={size}

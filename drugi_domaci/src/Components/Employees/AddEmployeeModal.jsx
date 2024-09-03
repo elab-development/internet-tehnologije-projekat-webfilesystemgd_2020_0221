@@ -13,10 +13,6 @@ function AddEmployeeModal({ show, onClose, handleAdd, company_id }) {
 
   const handleClick = () => {
     handleAdd({ name, position, email, password, company_id });
-    setName("");
-    setPosition("");
-    setEmail("");
-    setPassword("");
   };
   return (
     <div className={styles.container}>

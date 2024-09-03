@@ -73,7 +73,8 @@
       "size": 204800,
       "path": "/files/image1.png",
       "created_at": "2023-10-02T12:00:00Z",
-      "updated_at": "2023-10-02T12:00:00Z"
+      "updated_at": "2023-10-02T12:00:00Z",
+      "user_id": "1"
     },
     {
       "id": "4",
@@ -82,7 +83,8 @@
       "size": 10485760,
       "path": "/files/video1.mp4",
       "created_at": "2023-10-04T12:00:00Z",
-      "updated_at": "2023-10-04T12:00:00Z"
+      "updated_at": "2023-10-04T12:00:00Z",
+      "user_id": "2"
     },
     {
       "id": "5",
@@ -91,13 +93,36 @@
       "size": 2048000,
       "path": "/files/archive1.zip",
       "created_at": "2023-10-05T12:00:00Z",
-      "updated_at": "2023-10-05T12:00:00Z"
+      "updated_at": "2023-10-05T12:00:00Z",
+      "user_id": "2"
     },
     {
       "id": "9e20",
       "name": "slike.jpg",
       "size": "5000",
-      "path": "C/users/pictures"
+      "path": "C/users/pictures",
+      "user_id": "1"
+    },
+    {
+      "id": "de47",
+      "name": "document.jsx",
+      "size": "3600",
+      "path": "users/app/prod/desc",
+      "user_id": "1"
+    },
+    {
+      "id": "5de4",
+      "name": "nekifajl.png",
+      "size": "6330",
+      "path": "sadd/dasda/dsada",
+      "user_id": "1"
+    },
+    {
+      "id": "99cf",
+      "name": "nekifajl.png",
+      "size": "6330",
+      "path": "sadd/dasda/dsada",
+      "user_id": "1"
     }
   ],
   "users": [

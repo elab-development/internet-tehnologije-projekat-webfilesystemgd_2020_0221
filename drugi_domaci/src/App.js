@@ -53,6 +53,7 @@ function App() {
                 company={company}
                 employeesCount={employeesCount}
                 setEmployeesCount={setEmployeesCount}
+                user_id={user?.id}
               />
             }
           />
@@ -65,7 +66,7 @@ function App() {
               />
             }
           />
-          <Route path="/files" element={<Files />} />
+          <Route path="/files" element={<Files user={user} />} />
         </Route>
         <Route
           path="/loginRegister"
