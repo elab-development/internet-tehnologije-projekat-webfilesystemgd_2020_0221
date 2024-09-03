@@ -153,6 +153,12 @@
       "name": "stefan",
       "email": "stefan@gmail.com",
       "password": "stefan123"
+    },
+    {
+      "id": "cdc8",
+      "name": "Milan",
+      "email": "milan@gmail.com",
+      "password": "milan123"
     }
   ],
   "companies": [
@@ -187,6 +193,14 @@
       "phone": "sdsds",
       "description": "dsdsdsd",
       "user_id": "afd8"
+    },
+    {
+      "id": "1829",
+      "name": "Krusik",
+      "address": "Karadjordjeva 51 ",
+      "phone": "064 21 99 6++",
+      "description": "Jako curenje",
+      "user_id": "cdc8"
     }
   ]
 }
