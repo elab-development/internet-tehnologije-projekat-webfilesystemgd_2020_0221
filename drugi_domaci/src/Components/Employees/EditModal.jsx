@@ -8,8 +8,10 @@ function EditModal({ show, onClose, handleEdit, id }) {
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     handleEdit(position, id);
+    onClose();
   };
   return (
     <div className="modal-backdrop">

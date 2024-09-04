@@ -7,8 +7,10 @@ function EditFileModal({ show, onClose, handleEdit, id }) {
   if (!show) {
     return null;
   }
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     handleEdit(fileName, id);
+    onClose();
   };
   return (
     <div className={styles.backdrop}>

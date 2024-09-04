@@ -116,7 +116,10 @@ function App() {
                 />
               }
             />
-            <Route path="/files" element={<Files user={user} />} />
+            <Route
+              path="/files"
+              element={<Files user={user} company={company} />}
+            />
             <Route
               path="/createCompany"
               element={<Company user={user} setCompany={setCompany} />}

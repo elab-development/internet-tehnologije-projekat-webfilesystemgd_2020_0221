@@ -63,12 +63,20 @@
       "email": "nada@gmail.com",
       "passowrd": "nada123",
       "company_id": "2"
+    },
+    {
+      "id": "4062",
+      "name": "Djura",
+      "position": "sekretar",
+      "email": "djura@gmail.com",
+      "passowrd": "djura123",
+      "company_id": "2"
     }
   ],
   "files": [
     {
       "id": "2",
-      "name": "image2.png",
+      "name": "slika.jpg",
       "mime_type": "image/png",
       "size": 204800,
       "path": "/files/image1.png",
@@ -95,13 +103,6 @@
       "created_at": "2023-10-05T12:00:00Z",
       "updated_at": "2023-10-05T12:00:00Z",
       "user_id": "2"
-    },
-    {
-      "id": "9e20",
-      "name": "slike.jpg",
-      "size": "5000",
-      "path": "C/users/pictures",
-      "user_id": "1"
     },
     {
       "id": "de47",
@@ -201,6 +202,57 @@
       "phone": "064 21 99 6++",
       "description": "Jako curenje",
       "user_id": "cdc8"
+    }
+  ],
+  "privileges": [
+    {
+      "id": "1",
+      "file_id": "2",
+      "employee_id": "2",
+      "can_view": true,
+      "can_edit": true
+    },
+    {
+      "id": "6c8b",
+      "employee_id": "",
+      "file_id": "de47",
+      "can_view": false,
+      "can_edit": false
+    },
+    {
+      "id": "ed60",
+      "employee_id": "",
+      "file_id": "2",
+      "can_view": true,
+      "can_edit": true
+    },
+    {
+      "id": "ddb2",
+      "employee_id": "236c",
+      "file_id": "de47",
+      "can_view": true,
+      "can_edit": true
+    },
+    {
+      "id": "68f0",
+      "employee_id": "bccc",
+      "file_id": "99cf",
+      "can_view": false,
+      "can_edit": false
+    },
+    {
+      "id": "73fe",
+      "employee_id": "",
+      "file_id": "99cf",
+      "can_view": true,
+      "can_edit": false
+    },
+    {
+      "id": "3bc3",
+      "employee_id": "11c8",
+      "file_id": "de47",
+      "can_view": true,
+      "can_edit": true
     }
   ]
 }

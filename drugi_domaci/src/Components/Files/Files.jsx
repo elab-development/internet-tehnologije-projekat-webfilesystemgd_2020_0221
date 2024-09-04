@@ -2,7 +2,7 @@ import React, { useState, useEffect } from "react";
 import File from "./File";
 import styles from "./Files.module.css";
 
-function Files({ user }) {
+function Files({ user, company }) {
   const [files, setFiles] = useState([]);
 
   useEffect(() => {
@@ -54,6 +54,33 @@ function Files({ user }) {
     });
   };
 
+  const handleAddPrivilege = (employee_id, file_id, can_view, can_edit) => {
+    fetch("http://localhost:8000/privileges", {
+      method: "POST",
+      headers: {
+        "Content-Type": "application/json",
+      },
+      body: JSON.stringify({
+        employee_id: employee_id,
+        file_id: file_id,
+        can_view: can_view,
+        can_edit: can_edit,
+      }),
+    })
+      .then((response) => {
+        if (!response.ok) {
+          throw new Error("Server error");
+        }
+        return response.json();
+      })
+      .then((data) => {
+        console.log(data);
+      })
+      .catch((error) => {
+        console.error("Error:", error);
+      });
+  };
+
   return (
     <div className={styles.container}>
       {files &&
@@ -63,6 +90,8 @@ function Files({ user }) {
             file={element}
             handleRemove={handleRemove}
             handleEdit={handleEdit}
+            company={company}
+            handleAddPrivilege={handleAddPrivilege}
           />
         ))}
     </div>

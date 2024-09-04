@@ -11,8 +11,10 @@ function AddEmployeeModal({ show, onClose, handleAdd, company_id }) {
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     handleAdd({ name, position, email, password, company_id });
+    onClose();
   };
   return (
     <div className={styles.container}>

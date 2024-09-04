@@ -11,8 +11,10 @@ function AddFileModal({ show, onClose, handleAdd, user_id }) {
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     handleAdd({ name, mimeType, size, path, user_id });
+    onClose();
   };
   return (
     <div className={styles.container}>

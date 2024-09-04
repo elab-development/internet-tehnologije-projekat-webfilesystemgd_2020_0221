@@ -3,12 +3,18 @@ import styles from "./File.module.css";
 import Button from "../Button/Button";
 import EditFileModal from "./EditFileModal";
 import { useState } from "react";
+import AddPrivilegeModal from "./AddPrivilegeModal";
 
-function File({ file, handleEdit, handleRemove }) {
-  const [showModal, setShowModal] = useState(false);
+function File({ file, handleEdit, handleRemove, company, handleAddPrivilege }) {
+  const [showEditModal, setShowEditModal] = useState(false);
+  const [showPrivilegeModal, setShowPrivilegeModal] = useState(false);
 
-  const toggleModal = () => {
-    setShowModal(!showModal);
+  const togglePrivilegeModal = () => {
+    setShowPrivilegeModal(!showPrivilegeModal);
+  };
+
+  const toggleEditModal = () => {
+    setShowEditModal(!showEditModal);
   };
   return (
     <div className={styles.card}>
@@ -32,14 +38,22 @@ function File({ file, handleEdit, handleRemove }) {
       </div>
 
       <div className={styles.buttons}>
-        <Button text="Edit file" handleClick={toggleModal} />
+        <Button text="Edit file" handleClick={toggleEditModal} />
         <Button text="Remove" handleClick={() => handleRemove(file.id)} />
+        <Button text="Add privilege" handleClick={togglePrivilegeModal} />
       </div>
       <EditFileModal
-        show={showModal}
-        onClose={toggleModal}
+        show={showEditModal}
+        onClose={toggleEditModal}
         handleEdit={handleEdit}
         id={file.id}
+      />
+      <AddPrivilegeModal
+        show={showPrivilegeModal}
+        onClose={togglePrivilegeModal}
+        company={company}
+        file_id={file.id}
+        handleAdd={handleAddPrivilege}
       />
     </div>
   );

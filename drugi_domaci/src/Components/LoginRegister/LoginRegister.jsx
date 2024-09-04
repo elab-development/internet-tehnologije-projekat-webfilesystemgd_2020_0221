@@ -20,10 +20,17 @@ function LoginRegister({ setUser }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
 
+  const [isEmployee, setIsEmployee] = useState(false);
+  const handleChcckBoxChange = (e) => {
+    setIsEmployee(e.target.checked);
+  };
+
   const handleSubmitLogin = async (e) => {
     e.preventDefault();
     try {
-      const response = await fetch("http://localhost:8000/users");
+      const response = isEmployee
+        ? await fetch("http://localhost:8000/employees")
+        : await fetch("http://localhost:8000/users");
       const users = await response.json();
       const user = users.find(
         (user) => user.email === email && user.password === password
@@ -95,7 +102,11 @@ function LoginRegister({ setUser }) {
           </div>
           <div className="remember-forgot">
             <label>
-              <input type="checkbox" />
+              <input
+                type="checkbox"
+                checked={isEmployee}
+                onChange={handleChcckBoxChange}
+              />
               Login as employee
             </label>
             <a href="#">Forgot password?</a>
