@@ -57,3 +57,19 @@
 .submit_btn:hover {
   background: darkgreen;
 }
+
+.radio {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.radio label {
+  font-size: 14px;
+  color: #000;
+}
+
+.radio input[type="radio"] {
+  margin-right: 8px;
+}

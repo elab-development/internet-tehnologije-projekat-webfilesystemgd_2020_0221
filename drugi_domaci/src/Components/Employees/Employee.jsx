@@ -2,6 +2,9 @@ import Button from "../Button/Button";
 import "./Employee.css";
 import EditModal from "./EditModal";
 import { useState } from "react";
+import { BsFillPersonFill } from "react-icons/bs";
+import { SiWorkplace } from "react-icons/si";
+import { MdEmail, MdDelete, MdModeEdit } from "react-icons/md";
 
 function Employee({ employee, handleRemove, handleEdit }) {
   const [showModal, setShowModal] = useState(false);
@@ -13,22 +16,31 @@ function Employee({ employee, handleRemove, handleEdit }) {
     <div className="employee-card">
       <div className="employee-information">
         <div className="employee-line">
-          <h1>Ime i prezime:</h1>
-          <h1>{employee.name}</h1>
+          <h1>
+            <BsFillPersonFill />
+          </h1>
+          <h1> {employee.name}</h1>
         </div>
         <div className="employee-line">
-          <span>Email: </span>
+          <span>
+            <MdEmail />
+          </span>
           <p>{employee.email}</p>
         </div>
         <div className="employee-line">
-          <span>Radno mesto: </span>
+          <span>
+            <SiWorkplace />{" "}
+          </span>
           <p>{employee.position}</p>
         </div>
       </div>
 
       <div className="employee-buttons">
-        <Button text="Edit Position" handleClick={toggleModal} />
-        <Button text="Remove" handleClick={() => handleRemove(employee?.id)} />
+        <Button text={<MdModeEdit />} handleClick={toggleModal} />
+        <Button
+          text={<MdDelete />}
+          handleClick={() => handleRemove(employee?.id)}
+        />
       </div>
       <EditModal
         show={showModal}

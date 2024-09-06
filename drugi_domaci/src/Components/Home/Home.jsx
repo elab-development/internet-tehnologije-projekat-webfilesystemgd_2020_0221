@@ -7,7 +7,14 @@ import AddFileModal from "../Files/AddFileModal";
 function Home({ company, employeesCount, setEmployeesCount, user_id }) {
   const company_id = company?.id;
 
-  const addEmployee = ({ name, position, email, password, company_id }) => {
+  const addEmployee = ({
+    name,
+    position,
+    email,
+    password,
+    gender,
+    company_id,
+  }) => {
     fetch("http://localhost:8000/employees", {
       method: "POST",
       headers: {
@@ -18,6 +25,7 @@ function Home({ company, employeesCount, setEmployeesCount, user_id }) {
         position: position,
         email: email,
         passowrd: password,
+        gender: gender,
         company_id: company_id,
       }),
     })

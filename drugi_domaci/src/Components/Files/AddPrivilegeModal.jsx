@@ -6,6 +6,7 @@ function AddPrivilegeModal({ show, onClose, company, file_id, handleAdd }) {
   const [selectedEmployee, setSelectedEmployee] = useState("");
   const [selectedPrivilege, setSelectedPrivilege] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
+
   useEffect(() => {
     if (!company) {
       return;
@@ -25,7 +26,7 @@ function AddPrivilegeModal({ show, onClose, company, file_id, handleAdd }) {
           });
       }
     );
-  }, []);
+  }, [company]);
   if (!show) {
     return null;
   }

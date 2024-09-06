@@ -3,6 +3,7 @@ import styles from "./EditFileModal.module.css";
 import { useState } from "react";
 
 function EditFileModal({ show, onClose, handleEdit, id }) {
+  console.log(id);
   const [fileName, setFileName] = useState("");
   if (!show) {
     return null;

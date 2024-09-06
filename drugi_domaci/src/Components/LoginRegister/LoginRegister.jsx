@@ -19,6 +19,7 @@ function LoginRegister({ setUser }) {
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
+  const [gender, setGender] = useState("");
 
   const [isEmployee, setIsEmployee] = useState(false);
   const handleChcckBoxChange = (e) => {
@@ -38,6 +39,11 @@ function LoginRegister({ setUser }) {
       if (user) {
         setUser(user);
         navigate("/");
+        // if (isEmployee) {
+        //   localStorage.setItem("employee", JSON.stringify(user));
+        // } else {
+        //   localStorage.setItem("user", JSON.stringify(user));
+        // }
       } else {
         alert("Invalid email or password");
       }
@@ -57,7 +63,7 @@ function LoginRegister({ setUser }) {
         headers: {
           "Content-Type": "application/json",
         },
-        body: JSON.stringify({ name, email, password }),
+        body: JSON.stringify({ name, email, password, gender }),
       });
       if (response.ok) {
         alert("User successfully created");
@@ -173,6 +179,28 @@ function LoginRegister({ setUser }) {
               }}
             />
             <img className="icon" src={password_icon} alt="Neka slika" />
+          </div>
+          <div className="gender-selection">
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="male"
+                checked={gender === "male"}
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Male
+            </label>
+            <label>
+              <input
+                type="radio"
+                name="gender"
+                value="female"
+                checked={gender === "female"}
+                onChange={(e) => setGender(e.target.value)}
+              />
+              Female
+            </label>
           </div>
 
           <button type="submit">Register</button>

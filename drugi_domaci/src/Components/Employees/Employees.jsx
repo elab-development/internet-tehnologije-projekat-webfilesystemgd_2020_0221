@@ -31,12 +31,13 @@ function Employees({ company, setEmployeesCount }) {
       body: JSON.stringify({ position: position }),
     })
       .then(() => {
-        return fetch("http://localhost:8000/employees");
+        return fetch(
+          `http://localhost:8000/employees?company_id=${company.id}`
+        );
       })
       .then((response) => response.json())
       .then((data) => {
         setEmployees(data);
-        // Update your state or UI with the fetched employees data
       })
       .catch((error) => console.error("Error:", error));
   };

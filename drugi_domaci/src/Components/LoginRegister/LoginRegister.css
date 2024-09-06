@@ -127,3 +127,20 @@ form .register-link {
 .register-link p a:hover {
   text-decoration: underline;
 }
+
+.gender-selection {
+  display: flex;
+  justify-content: center;
+  gap: 20px;
+  margin: 20px 0;
+}
+
+.gender-selection label {
+  font-size: 14px;
+  color: #fff;
+}
+
+.gender-selection input[type="radio"] {
+  accent-color: #fff;
+  margin-right: 8px;
+}

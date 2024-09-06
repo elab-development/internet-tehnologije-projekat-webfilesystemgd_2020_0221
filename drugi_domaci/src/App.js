@@ -13,6 +13,7 @@ import Company from "./Components/Company/Company.jsx";
 import Home from "./Components/Home/Home.jsx";
 import Employees from "./Components/Employees/Employees.jsx";
 import Files from "./Components/Files/Files.jsx";
+import Profile from "./Components/Profile/Profile.jsx";
 
 function App() {
   const [user, setUser] = useState(() => {
@@ -47,44 +48,6 @@ function App() {
         .catch((error) => console.error("Error fetching employees:", error));
     }
   }, [company]);
-
-  // return (
-  //   <BrowserRouter className="container">
-  //     <Routes>
-  //       <Route path="" element={<Navbar />}>
-  //         <Route
-  //           path="/"
-  //           element={
-  //             <Home
-  //               company={company}
-  //               employeesCount={employeesCount}
-  //               setEmployeesCount={setEmployeesCount}
-  //               user_id={user?.id}
-  //             />
-  //           }
-  //         />
-  //         <Route
-  //           path="/employees"
-  //           element={
-  //             <Employees
-  //               company={company}
-  //               setEmployeesCount={setEmployeesCount}
-  //             />
-  //           }
-  //         />
-  //         <Route path="/files" element={<Files user={user} />} />
-  //       </Route>
-  //       <Route
-  //         path="/loginRegister"
-  //         element={<LoginRegister setUser={setUser} />}
-  //       />
-  //       <Route
-  //         path="/createCompany"
-  //         element={<Company user={user} setCompany={setCompany} />}
-  //       />
-  //     </Routes>
-  //   </BrowserRouter>
-  // );
 
   return (
     <BrowserRouter className="container">
@@ -124,6 +87,7 @@ function App() {
               path="/createCompany"
               element={<Company user={user} setCompany={setCompany} />}
             />
+            <Route path="/profile" element={<Profile user={user} />} />
           </Route>
         ) : (
           <Route path="*" element={<Navigate to="/loginRegister" />} />
