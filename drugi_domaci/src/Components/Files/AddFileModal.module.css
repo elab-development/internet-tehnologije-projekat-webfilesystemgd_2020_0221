@@ -33,7 +33,13 @@
   padding: 10px;
   color: rgb(76, 73, 73);
   border-radius: 5px;
+  margin-bottom: 5px;
   border: 1px solid #ccc;
+}
+
+.input_box input:focus {
+  outline: none;
+  border-color: #007bff;
 }
 
 .close_btn {
@@ -45,6 +51,7 @@
   cursor: pointer;
   margin-top: 10px;
 }
+
 .submit_btn {
   background: green;
   color: #fff;

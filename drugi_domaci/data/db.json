@@ -103,32 +103,28 @@
       "user_id": "2"
     },
     {
-      "id": "de47",
-      "name": "nekidrugi.exe",
-      "size": "3600",
-      "path": "users/app/prod/desc",
+      "id": "c563",
+      "name": "test 1",
+      "mime_type": "document",
+      "size": 0,
+      "path": "",
       "user_id": "1"
     },
     {
-      "id": "5de4",
-      "name": "file.jsx",
-      "size": "6330",
-      "path": "sadd/dasda/dsada",
+      "id": "559e",
+      "name": "test 1",
+      "mime_type": "table",
+      "size": 0,
+      "path": "",
       "user_id": "1"
     },
     {
-      "id": "f493",
-      "name": "novifajl.jsx",
-      "size": "1536",
-      "path": "asdsdada",
+      "id": "46dd",
+      "name": "asdasd",
+      "mime_type": "table",
+      "size": 0,
+      "path": "",
       "user_id": "1"
-    },
-    {
-      "id": "8ca1",
-      "name": "dokument1.exe",
-      "size": "456",
-      "path": "neka putanja",
-      "user_id": "dd91"
     }
   ],
   "users": [

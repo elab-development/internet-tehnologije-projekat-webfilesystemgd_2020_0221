@@ -31,7 +31,6 @@ function FilesTable({
     setShowEditModal(!showEditModal);
     handleClose();
   };
-  /****************************/
 
   const handleClick = (event, fileId) => {
     setAnchorEl(event.currentTarget);
@@ -40,13 +39,14 @@ function FilesTable({
 
   const handleClose = () => {
     setAnchorEl(null);
-    //setSelectedFileId(null);
   };
 
   const columns = [
     { field: "id", headerName: "ID", width: 90 },
     { field: "name", headerName: "File Name", width: 200 },
-    { field: "size", headerName: "Size (bytes)", width: 130 },
+    { field: "size", headerName: "Size (bytes)", width: 200 },
+    { field: "mime_type", headerName: "Type", width: 200 },
+    { field: "user_id", headerName: "Author", width: 200 },
     {
       field: "actions",
       headerName: "Actions",
@@ -78,7 +78,7 @@ function FilesTable({
 
   return (
     <div
-      style={{ height: 400, width: "80%", margin: "0 auto", padding: "20px" }}
+      style={{ height: 400, width: "100%", margin: "0 auto", padding: "20px" }}
     >
       <DataGrid rows={files} columns={columns} pageSize={5} />
 

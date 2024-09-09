@@ -5,7 +5,6 @@ import {
   BrowserRouter,
   Routes,
   Route,
-  Router,
   Navigate,
 } from "react-router-dom";
 import "./index.css";
