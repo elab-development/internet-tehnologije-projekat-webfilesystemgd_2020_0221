@@ -29,7 +29,6 @@ ul li {
 .logout {
   display: inline-block;
   margin: 10px 20px;
-  /* margin-left: auto; */
   font-size: 35px;
   cursor: pointer;
   color: black;

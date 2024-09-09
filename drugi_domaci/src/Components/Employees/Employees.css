@@ -1,11 +1,7 @@
 .employees-container {
   display: flex;
   flex-direction: column;
-  /* padding-top: 10vh;
-  padding-left: 10vw; */
   gap: 50px;
   margin-top: 10px;
   margin-left: 10px;
-  /* background-color: #f7f7f7; */
-  /* width: 60vw; */
 }

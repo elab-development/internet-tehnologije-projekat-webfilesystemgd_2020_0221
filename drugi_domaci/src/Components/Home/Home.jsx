@@ -34,9 +34,7 @@ function Home({ company, employeesCount, setEmployeesCount, user_id }) {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.error("Error:", error);
       });

@@ -14,7 +14,6 @@ function LoginRegister({ setUser }) {
     setAction("");
   };
   let navigate = useNavigate();
-  // const [role, setRole] = useState("user");
   const [name, setName] = useState("");
   const [email, setEmail] = useState("");
   const [password, setPassword] = useState("");
@@ -39,11 +38,6 @@ function LoginRegister({ setUser }) {
       if (user) {
         setUser(user);
         navigate("/");
-        // if (isEmployee) {
-        //   localStorage.setItem("employee", JSON.stringify(user));
-        // } else {
-        //   localStorage.setItem("user", JSON.stringify(user));
-        // }
       } else {
         alert("Invalid email or password");
       }

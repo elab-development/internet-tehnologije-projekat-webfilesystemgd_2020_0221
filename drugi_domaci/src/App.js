@@ -24,7 +24,7 @@ function App() {
   const [employeesCount, setEmployeesCount] = useState(0);
   useEffect(() => {
     if (user) {
-      localStorage.setItem("user", JSON.stringify(user)); //kad se refresuje stranica, user ostaje ulogovan
+      localStorage.setItem("user", JSON.stringify(user));
 
       fetch(`http://localhost:8000/companies?user_id=${user.id}`)
         .then((response) => response.json())

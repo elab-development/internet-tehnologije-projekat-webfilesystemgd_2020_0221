@@ -7,7 +7,7 @@ import Select from "react-select";
 function AddFileModal({ show, onClose, handleAdd, user_id }) {
   const [name, setName] = useState("");
   const [mime_type, setMimeType] = useState("");
-  const [size, setSize] = useState(0);
+  const [size] = useState(0);
   const [path, setPath] = useState("");
 
   const options = [

@@ -18,7 +18,6 @@ function FilesTable({
   const [selectedFileId, setSelectedFileId] = useState(null);
   const open = Boolean(anchorEl);
 
-  /*za prikazivanje modala*/
   const [showEditModal, setShowEditModal] = useState(false);
   const [showPrivilegeModal, setShowPrivilegeModal] = useState(false);
 

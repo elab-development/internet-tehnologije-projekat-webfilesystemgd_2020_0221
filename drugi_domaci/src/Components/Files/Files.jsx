@@ -8,8 +8,6 @@ function Files({ user, company }) {
   const [files, setFiles] = useState([]);
   const [showModalFile, setShowModalFile] = useState(false);
 
-
-
   useEffect(() => {
     if (user?.id) {
       fetch(`http://localhost:8000/files?user_id=${user.id}`).then(
@@ -71,6 +69,9 @@ function Files({ user, company }) {
       case "presentation":
         file.mime_type = "Slides 🎬";
         break;
+      default:
+        file.mime_type = "Other";
+        break;
     }
   });
 
@@ -122,9 +123,7 @@ function Files({ user, company }) {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.error("Error:", error);
       });
@@ -154,9 +153,7 @@ function Files({ user, company }) {
         }
         return response.json();
       })
-      .then((data) => {
-        console.log(data);
-      })
+      .then((data) => {})
       .catch((error) => {
         console.error("Error:", error);
       });

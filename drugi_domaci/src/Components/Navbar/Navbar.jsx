@@ -1,6 +1,5 @@
 import "./Navbar.css";
 import React from "react";
-import search_w from "../Assets/search-w.png";
 import logo_b from "../Assets/Miles_F.png";
 import { Link, Outlet, useNavigate } from "react-router-dom";
 import { CiLogout } from "react-icons/ci";
@@ -39,13 +38,6 @@ function Navbar() {
             </Link>
           </li>
         </ul>
-        {/* <div className="search-box">
-          <input type="text" placeholder="Search" />
-          <img src={search_w} alt="" />
-        </div>
-        {/* <button onClick={handleLogout} className="logout">
-          Logout
-        </button> */}
         <CiLogout className="logout" onClick={handleLogout} />
       </div>
       <Outlet />
