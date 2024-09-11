@@ -72,8 +72,8 @@ class CompanyController extends Controller
     public function update(Request $request, string $id)
     {
         $validated=$request->validate([
-            "name"=>"required|string|max:255",
-            "description"=>"nullable|string|max:255",
+            "name"=>"nullable|string|max:255",
+            "description"=>"required|string|max:255",
             "address"=>"nullable|string|max:255",
             "phone"=>"nullable|string|max:20",
         ]);

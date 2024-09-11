@@ -17,7 +17,7 @@ class EmployeeAuthController extends Controller
         'password'=>'required|string|min:8'
         ]);
 
-        $employee = Employee::where('email',$request->email)->first();//vraca niz 
+        $employee = Employee::where('email',$request->email)->first(); 
         if(!$employee || !Hash::check($request->password,$employee->password)){
             return response()->json(["message"=>"Invalid credentails."]);
         }

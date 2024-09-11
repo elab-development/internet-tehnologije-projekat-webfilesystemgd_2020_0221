@@ -55,15 +55,6 @@
       "gender": "female"
     },
     {
-      "id": "4062",
-      "name": "Djura",
-      "position": "sekretar",
-      "email": "djura@gmail.com",
-      "passowrd": "djura123",
-      "company_id": "2",
-      "gender": "male"
-    },
-    {
       "id": "e29a",
       "name": "Pera Peric",
       "position": "majstor",
@@ -117,6 +108,30 @@
       "size": 0,
       "path": "",
       "user_id": "1"
+    },
+    {
+      "id": "c5ca",
+      "name": "test2",
+      "mime_type": "presentation",
+      "size": 0,
+      "path": "",
+      "user_id": "1"
+    },
+    {
+      "id": "991c",
+      "name": "dokument2",
+      "mime_type": "document",
+      "size": 0,
+      "path": "",
+      "user_id": "1"
+    },
+    {
+      "id": "916e",
+      "name": "luka",
+      "mime_type": "document",
+      "size": 0,
+      "path": "",
+      "user_id": "1"
     }
   ],
   "users": [
@@ -164,6 +179,20 @@
       "name": "Djordje Petrovic",
       "email": "djordje@gmail.com",
       "password": "djole123",
+      "gender": "male"
+    },
+    {
+      "id": "968f",
+      "name": "Djuradj Kastriot ",
+      "email": "djuradj@gmail.com",
+      "password": "djuradj123",
+      "gender": "male"
+    },
+    {
+      "id": "0259",
+      "name": "Djurardj",
+      "email": "djuradj@gmail.com",
+      "password": "djura123",
       "gender": "male"
     }
   ],
@@ -273,6 +302,20 @@
       "file_id": "8ca1",
       "can_view": true,
       "can_edit": true
+    },
+    {
+      "id": "6f82",
+      "employee_id": "11c8",
+      "file_id": "991c",
+      "can_view": true,
+      "can_edit": false
+    },
+    {
+      "id": "1afc",
+      "employee_id": "bccc",
+      "file_id": "c563",
+      "can_view": true,
+      "can_edit": false
     }
   ]
 }

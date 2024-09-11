@@ -7,9 +7,6 @@ use App\Http\Controllers\EmployeeController;
 use App\Http\Controllers\FileController;
 use App\Http\Controllers\PrivilegeController;
 use App\Http\Controllers\UserController;
-use App\Models\Company;
-use App\Models\User;
-use GuzzleHttp\Cookie\FileCookieJar;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Route;
 
@@ -22,7 +19,6 @@ Route::middleware(['auth:sanctum','check_if_user'])->group(function () {
     Route::get('/profile', function (Request $request) {
         return $request->user();
     });
-
     Route::resource('/companies',CompanyController::class)->only(['store','update','destroy']);
     Route::post('/employees',[EmployeeController::class,'store']);
     Route::put('/employees/{id}',[EmployeeController::class,'update']);
@@ -43,7 +39,6 @@ Route::get('/companies/{id}',[CompanyController::class,'show']);
 Route::get('/employees',[EmployeeController::class,'index']);
 Route::get('/employees/{id}',[EmployeeController::class,'show']);
 
-
 //FILE
 Route::get('/files',[FileController::class,'index']);
 Route::get('/files/{id}',[FileController::class,'show']);
@@ -51,9 +46,6 @@ Route::get('/files/{id}',[FileController::class,'show']);
 //PRIVILEGE
 Route::get('/privileges',[PrivilegeController::class,'index']);
 Route::get('/privileges/{id}',[PrivilegeController::class,'show']);
-
-
-
 
 //AUTH
 Route::post('/register',[AuthController::class,'register']);

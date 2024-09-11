@@ -1,12 +1,7 @@
 import { useState, useEffect } from "react";
 import LoginRegister from "./Components/LoginRegister/LoginRegister";
 import Navbar from "./Components/Navbar/Navbar.jsx";
-import {
-  BrowserRouter,
-  Routes,
-  Route,
-  Navigate,
-} from "react-router-dom";
+import { BrowserRouter, Routes, Route, Navigate } from "react-router-dom";
 import "./index.css";
 import Company from "./Components/Company/Company.jsx";
 import Home from "./Components/Home/Home.jsx";
@@ -55,6 +50,10 @@ function App() {
           path="/loginRegister"
           element={<LoginRegister setUser={setUser} />}
         />
+        <Route
+          path="/createCompany"
+          element={<Company user={user} setCompany={setCompany} />}
+        />
 
         {user ? (
           <Route path="/" element={<Navbar />}>
@@ -82,10 +81,7 @@ function App() {
               path="/files"
               element={<Files user={user} company={company} />}
             />
-            <Route
-              path="/createCompany"
-              element={<Company user={user} setCompany={setCompany} />}
-            />
+
             <Route path="/profile" element={<Profile user={user} />} />
           </Route>
         ) : (

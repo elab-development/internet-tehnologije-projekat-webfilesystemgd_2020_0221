@@ -21,7 +21,7 @@ class CheckIfUser
         
         if ($user instanceof Employee) {
             
-            return response()->json(['message' => 'You cannot create comapnies, employees or privileges.'], 403);
+            return response()->json(['message' => 'You cannot create companies, employees or privileges.'], 403);
         }
 
         return $next($request);

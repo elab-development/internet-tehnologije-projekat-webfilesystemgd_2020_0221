@@ -4,6 +4,7 @@ namespace App\Http\Controllers;
 
 use App\Models\Company;
 use App\Models\Employee;
+use App\Models\User;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -17,7 +18,7 @@ class EmployeeController extends Controller
         $employees =  Employee::all();
         return response()->json($employees);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -34,22 +35,21 @@ class EmployeeController extends Controller
         $validated=$request->validate([
             'name'=>'required|string|max:255',
             'position'=>'required|string|max:255',
-            'company_id'=>'required|exists:companies,id',
             'email'=>'required|string|email|unique:employees',
             'password'=>'required|string|min:8'
         ]);
-        $company = Company::find($validated['company_id']);
-
+        
+        $company = Company::where('user_id',Auth::id())->first();
         // Provera da li kompanija postoji
         if (is_null($company)) {
             return response()->json(['message' => 'Company not found.'], 404);
         }
-    
         // Provera da li je trenutni korisnik vlasnik kompanije
         if ($company->user_id !== Auth::id()) {
             return response()->json(['message' => 'Unauthorized.'], 403);
         }
         $validated['password'] = bcrypt($validated['password']);
+        $validated['company_id'] = $company->id;
         $employee = Employee::create($validated);
         return response()->json([
             'message' => 'Employee created successfully.',

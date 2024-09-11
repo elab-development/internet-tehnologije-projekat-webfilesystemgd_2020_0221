@@ -20,7 +20,7 @@ class FileController extends Controller
         $files = File::all();
         return response()->json($files);
     }
-
+    
     /**
      * Show the form for creating a new resource.
      */
@@ -35,7 +35,6 @@ class FileController extends Controller
     public function store(Request $request)
     {
         try{
-
             $validated=$request->validate([
                 'name'=>'required|string|max:255',
                 'path'=>'required|string|max:255',
@@ -50,7 +49,6 @@ class FileController extends Controller
                 $validated['user_id']=Auth::id();
             }else{
                 $company = Company::find($user->company_id);
-    
                 if ($company) {
                     $validated['user_id'] = $company->user_id; // Pretpostavlja se da `Company` model ima `user_id`
                 } else {
@@ -59,8 +57,6 @@ class FileController extends Controller
                 $employeeId = $user->id;
             }
             $file = File::create($validated);
-
-
             if ($employeeId) {
                 // Ako je zaposleni kreirao fajl, dodeli sve privilegije
                 Privilege::create([
@@ -74,7 +70,6 @@ class FileController extends Controller
                 'message' => 'File created successfully.',
                 'file' => $file
             ], 201);
-
         }catch(QueryException $e){
             return \response()->json(["message"=>"An error ocurd:".$e->getMessage()],500);
         }
