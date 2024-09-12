@@ -3,7 +3,7 @@ import "./LoginRegister.css";
 import email_icon from "../Assets/email.png";
 import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, Link } from "react-router-dom";
 
 function LoginRegister({ setUser }) {
   const [action, setAction] = useState("");
@@ -19,6 +19,7 @@ function LoginRegister({ setUser }) {
   const [password, setPassword] = useState("");
   const [confirmPassword, setConfirmPassword] = useState("");
   const [gender, setGender] = useState("");
+  const [token, setToken] = useState(null);
 
   const [isEmployee, setIsEmployee] = useState(false);
   const handleChcckBoxChange = (e) => {
@@ -29,18 +30,36 @@ function LoginRegister({ setUser }) {
     e.preventDefault();
     try {
       const response = isEmployee
-        ? await fetch("http://localhost:8000/employees")
-        : await fetch("http://localhost:8000/users");
-      const users = await response.json();
-      const user = users.find(
-        (user) => user.email === email && user.password === password
-      );
-      if (user) {
-        setUser(user);
-        navigate("/");
-      } else {
-        alert("Invalid email or password");
+        ? await fetch("http://localhost:8000/employee/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+          })
+        : await fetch("http://localhost:8000/api/login", {
+            method: "POST",
+            headers: {
+              "Content-Type": "application/json",
+            },
+            body: JSON.stringify({
+              email,
+              password,
+            }),
+          });
+
+      if (!response.ok) {
+        const data = await response.json();
+        throw new Error(data.message || "Something went wrong.");
       }
+      const data = await response.json();
+
+      isEmployee ? setUser(data.employee) : setUser(data.user);
+      localStorage.setItem("auth_token", data.access_token);
+      navigate("/");
     } catch (error) {
       console.error("Error fetching users:", error);
     }
@@ -52,7 +71,7 @@ function LoginRegister({ setUser }) {
       return;
     }
     try {
-      const response = await fetch("http://localhost:8000/users", {
+      const response = await fetch("http://localhost:8000/api/register", {
         method: "POST",
         headers: {
           "Content-Type": "application/json",
@@ -62,7 +81,8 @@ function LoginRegister({ setUser }) {
       if (response.ok) {
         alert("User successfully created");
         const data = await response.json();
-        setUser(data);
+        console.log(data);
+        setUser(data.user);
         navigate("/createCompany");
       } else {
         alert("Error creating user");
@@ -109,7 +129,7 @@ function LoginRegister({ setUser }) {
               />
               Login as employee
             </label>
-            <a href="#">Forgot password?</a>
+            <Link to="/forgotPassword">Forgot password?</Link>
           </div>
           <button type="submit">Login</button>
           <div className="register-link">
