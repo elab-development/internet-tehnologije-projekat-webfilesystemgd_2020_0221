@@ -2,6 +2,8 @@
 
 namespace App\Http\Controllers;
 
+use App\Models\Company;
+use App\Models\File;
 use App\Models\User;
 use Illuminate\Http\Request;
 
@@ -42,6 +44,31 @@ class UserController extends Controller
             return response()->json($user);
         }
         return response()->json("User not found",404);
+    }
+
+    public function getCompany($id){
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json("User not found",404);
+        }
+        $company = Company::where('user_id',$id)->with('employees')->first();
+        if(is_null($company)){
+            return response()->json("Company not found",404);
+        }
+
+        return response()->json($company);
+    }
+
+    public function getFiles($id){
+        $user = User::find($id);
+        if(is_null($user)){
+            return response()->json("User not found",404);
+        }
+        $files = File::where('user_id',$id)->get();
+        if(is_null($files)){
+            return response()->json("Company not found",404);
+        }
+        return response()->json($files);
     }
 
     /**

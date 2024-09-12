@@ -19,4 +19,8 @@ class Company extends Model
     public function owner(){
         return $this->belongsTo(User::class, 'user_id');
     }
+
+    public function employees(){
+        return $this->hasMany(Employee::class);
+    }
 }

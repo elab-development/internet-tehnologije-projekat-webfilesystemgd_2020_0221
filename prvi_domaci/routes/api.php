@@ -20,16 +20,21 @@ Route::middleware(['auth:sanctum','check_if_user'])->group(function () {
         return $request->user();
     });
     Route::resource('/companies',CompanyController::class)->only(['store','update','destroy']);
+
+    Route::get('/companies/{id}/employees',[CompanyController::class,'getEmployees']);
     Route::post('/employees',[EmployeeController::class,'store']);
     Route::put('/employees/{id}',[EmployeeController::class,'update']);
     Route::delete('/employees/{id}',[EmployeeController::class,'destroy']);
     Route::apiResource('/privileges',PrivilegeController::class)->only(['store','update','destroy']); 
+    Route::get('/users/{id}/company',[UserController::class,'getCompany']);
+    Route::get('/users/{id}/files',[UserController::class,'getFiles']);
 });
 
 Route::apiResource('/files',FileController::class)->only(['store','update','destroy'])->middleware("auth:sanctum");
 //USER RUTE
 Route::get('/users',[UserController::class,'index']);
 Route::get('/users/{id}',[UserController::class,'show']);
+Route::post('/users',[UserController::class,'store']);
 
 //COMPANY
 Route::get('/companies',[CompanyController::class,'index']);

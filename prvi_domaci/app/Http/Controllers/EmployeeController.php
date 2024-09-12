@@ -36,7 +36,8 @@ class EmployeeController extends Controller
             'name'=>'required|string|max:255',
             'position'=>'required|string|max:255',
             'email'=>'required|string|email|unique:employees',
-            'password'=>'required|string|min:8'
+            'password'=>'required|string|min:8',
+            'gender'=>'required|string|max:255',
         ]);
         
         $company = Company::where('user_id',Auth::id())->first();
@@ -83,9 +84,9 @@ class EmployeeController extends Controller
     public function update(Request $request, string $id)
     {
         $validated=$request->validate([
-            'name'=>'required|string|max:255',
+            
             'position'=>'required|string|max:255',
-            'company_id'=>'required|exists:companies,id'
+            
         ]);
 
 

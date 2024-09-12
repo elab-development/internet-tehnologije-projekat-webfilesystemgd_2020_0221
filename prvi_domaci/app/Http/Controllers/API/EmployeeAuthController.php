@@ -22,7 +22,7 @@ class EmployeeAuthController extends Controller
             return response()->json(["message"=>"Invalid credentails."]);
         }
         $token = $employee->createToken('auth_token')->plainTextToken;
-        return response()->json(['message'=>'Hi '.$employee->name.' welcome to home.','access_token'=>$token]);
+        return response()->json(['employee'=>$employee,'access_token'=>$token]);
 
    }
    public function logout(Request $request){

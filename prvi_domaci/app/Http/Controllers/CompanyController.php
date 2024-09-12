@@ -3,7 +3,7 @@
 namespace App\Http\Controllers;
 
 use App\Models\Company;
-
+use App\Models\Employee;
 use Illuminate\Http\Request;
 use Illuminate\Support\Facades\Auth;
 
@@ -44,6 +44,15 @@ class CompanyController extends Controller
             'message' => 'Company created successfully.',
             'company' => $company
         ], 201);
+    }
+
+    public function getEmployees($id){
+        $company = Company::find($id);
+        if(is_null($company)){
+            return response()->json("Company not found",404);
+        }
+        $employees = Employee::where('company_id',$id)->get();
+        return response()->json($employees);
     }
 
     /**

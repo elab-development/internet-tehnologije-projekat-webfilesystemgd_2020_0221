@@ -13,9 +13,11 @@ class AuthController extends Controller
         $validated = $request->validate([
             'name'=>'required|string|max:255',
             'email'=>'required|string|max:255|email|unique:users',
-            'password'=>'required|string|min:8|confirmed'
+            'password'=>'required|string|min:8|confirmed',
+            'gender'=>'required|string|max:255'
         ]);
 
+            $validated['password'] = bcrypt($validated['password']);
         $user = User::create($validated);
 
         $token = $user->createToken('auth_token')->plainTextToken;
@@ -36,7 +38,7 @@ class AuthController extends Controller
             return response()->json(["message"=>"Invalid credentails."]);
         }
         $token = $user->createToken('auth_token')->plainTextToken;
-        return response()->json(['message'=>'Hi '.$user->name.' welcome to home.','access_token'=>$token]);
+        return response()->json(['user'=>$user,'access_token'=>$token]);
 
    }
    public function logout(Request $request){
