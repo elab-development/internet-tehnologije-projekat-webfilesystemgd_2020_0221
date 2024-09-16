@@ -5,7 +5,7 @@ import user_icon from "../Assets/person.png";
 import password_icon from "../Assets/password.png";
 import { useNavigate, Link } from "react-router-dom";
 
-function LoginRegister({ setUser }) {
+function LoginRegister({ setUser, setAuthToken }) {
   const [action, setAction] = useState("");
   const registerLink = () => {
     setAction("active");
@@ -59,6 +59,7 @@ function LoginRegister({ setUser }) {
 
       isEmployee ? setUser(data.employee) : setUser(data.user);
       localStorage.setItem("auth_token", data.access_token);
+      setAuthToken(data.access_token);
       navigate("/");
     } catch (error) {
       console.error("Error fetching users:", error);

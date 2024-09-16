@@ -2,31 +2,31 @@ import { React, useState, useEffect } from "react";
 import styles from "./AddPrivilegeModal.module.css";
 
 function AddPrivilegeModal({ show, onClose, company, file_id, handleAdd }) {
-  const [employees, setEmployees] = useState([]);
+  const [employees, setEmployees] = useState(company?.employees);
   const [selectedEmployee, setSelectedEmployee] = useState("");
   const [selectedPrivilege, setSelectedPrivilege] = useState("");
   const [errorMessage, setErrorMessage] = useState("");
 
-  useEffect(() => {
-    if (!company) {
-      return;
-    }
-    fetch(`http://localhost:8000/employees?company_id=${company.id}`).then(
-      (response) => {
-        if (!response.ok) {
-          throw new Error("Server error");
-        }
-        response
-          .json()
-          .then((data) => {
-            setEmployees(data);
-          })
-          .catch((error) => {
-            console.error(error);
-          });
-      }
-    );
-  }, [company]);
+  // useEffect(() => {
+  //   if (!company) {
+  //     return;
+  //   }
+  //   fetch(`http://localhost:8000/employees?company_id=${company.id}`).then(
+  //     (response) => {
+  //       if (!response.ok) {
+  //         throw new Error("Server error");
+  //       }
+  //       response
+  //         .json()
+  //         .then((data) => {
+  //           setEmployees(data);
+  //         })
+  //         .catch((error) => {
+  //           console.error(error);
+  //         });
+  //     }
+  //   );
+  // }, [company]);
   if (!show) {
     return null;
   }

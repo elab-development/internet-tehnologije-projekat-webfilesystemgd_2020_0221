@@ -2,7 +2,7 @@ import React from "react";
 import styles from "./AddEmployeeModal.module.css";
 import { useState } from "react";
 
-function AddEmployeeModal({ show, onClose, handleAdd, company_id }) {
+function AddEmployeeModal({ show, onClose, handleAdd }) {
   const [name, setName] = useState("");
   const [position, setPosition] = useState("");
   const [email, setEmail] = useState("");
@@ -14,7 +14,7 @@ function AddEmployeeModal({ show, onClose, handleAdd, company_id }) {
 
   const handleClick = (e) => {
     e.preventDefault();
-    handleAdd({ name, position, email, password, gender, company_id });
+    handleAdd({ name, position, email, password, gender });
     onClose();
   };
   return (

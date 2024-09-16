@@ -10,32 +10,39 @@ function Files({ user, company }) {
 
   useEffect(() => {
     if (user?.id) {
-      fetch(`http://localhost:8000/files?user_id=${user.id}`).then(
-        (response) => {
-          if (!response.ok) {
-            throw new Error("Server error");
-          }
-          response
-            .json()
-            .then((data) => {
-              setFiles(data);
-            })
-            .catch((error) => {
-              console.error(error);
-            });
+      fetch(`http://localhost:8000/api/users/${user.id}/files`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+        },
+      }).then((response) => {
+        if (!response.ok) {
+          throw new Error("Server error");
         }
-      );
+        response
+          .json()
+          .then((data) => {
+            setFiles(data);
+          })
+          .catch((error) => {
+            console.error(error);
+          });
+      });
     }
   }, [user, showModalFile]);
 
   async function getAuthorName(userId) {
     try {
-      const response = await fetch(`http://localhost:8000/users/${userId}`, {
-        method: "GET",
-        headers: {
-          "Content-Type": "application/json",
-        },
-      });
+      const response = await fetch(
+        `http://localhost:8000/api/users/${userId}`,
+        {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+          },
+        }
+      );
       const data = await response.json();
       const authorName = data.name;
       return authorName;
@@ -77,15 +84,22 @@ function Files({ user, company }) {
 
   const handleEdit = (fileName, id) => {
     if (!fileName) return;
-    fetch(`http://localhost:8000/files/${id}`, {
+    fetch(`http://localhost:8000/api/files/${id}`, {
       method: "PATCH",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
       },
       body: JSON.stringify({ name: fileName }),
     })
       .then(() => {
-        return fetch(`http://localhost:8000/files?user_id=${user.id}`);
+        return fetch(`http://localhost:8000/api/users/${user.id}/files`, {
+          method: "GET",
+          headers: {
+            "Content-Type": "application/json",
+            Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+          },
+        });
       })
       .then((response) => response.json())
       .then((data) => {
@@ -94,8 +108,12 @@ function Files({ user, company }) {
       .catch((error) => console.error("Error:", error));
   };
   const handleRemove = (id) => {
-    fetch(`http://localhost:8000/files/${id}`, {
+    fetch(`http://localhost:8000/api/files/${id}`, {
       method: "DELETE",
+      headers: {
+        "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
+      },
     }).then((response) => {
       if (!response.ok) {
         throw new Error("Server error");
@@ -105,10 +123,11 @@ function Files({ user, company }) {
   };
 
   const handleAddPrivilege = (employee_id, file_id, can_view, can_edit) => {
-    fetch("http://localhost:8000/privileges", {
+    fetch("http://localhost:8000/api/privileges", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
       },
       body: JSON.stringify({
         employee_id: employee_id,
@@ -133,18 +152,18 @@ function Files({ user, company }) {
     setShowModalFile(!showModalFile);
   };
 
-  const addFile = ({ name, mime_type, size, path, user_id }) => {
-    fetch("http://localhost:8000/files", {
+  const addFile = ({ name, mime_type, size, path }) => {
+    fetch("http://localhost:8000/api/files", {
       method: "POST",
       headers: {
         "Content-Type": "application/json",
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
       },
       body: JSON.stringify({
         name: name,
         mime_type: mime_type,
         size: size,
         path: path,
-        user_id: user_id,
       }),
     })
       .then((response) => {
@@ -153,7 +172,9 @@ function Files({ user, company }) {
         }
         return response.json();
       })
-      .then((data) => {})
+      .then((data) => {
+        setFiles([...files, data]);
+      })
       .catch((error) => {
         console.error("Error:", error);
       });

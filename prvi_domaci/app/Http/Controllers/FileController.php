@@ -37,10 +37,10 @@ class FileController extends Controller
         try{
             $validated=$request->validate([
                 'name'=>'required|string|max:255',
-                'path'=>'required|string|max:255',
-              'mime_type'=>'required|string|max:255',
-                'google_drive_id'=>'required|string|max:255',
-                'size'=>'required|numeric|min:0'
+                'path'=>'nullable|string|max:255',
+              'mime_type'=>'nullable|string|max:255',
+                'google_drive_id'=>'nullable|string|max:255',
+                'size'=>'nullable|numeric|min:0'
             ]);
             $user = $request->user();
             $employeeId =null;
@@ -48,7 +48,7 @@ class FileController extends Controller
                 
                 $validated['user_id']=Auth::id();
             }else{
-                $company = Company::find($user->company_id);
+                $company = Company::where('user_id',$user->id)->first();
                 if ($company) {
                     $validated['user_id'] = $company->user_id; // Pretpostavlja se da `Company` model ima `user_id`
                 } else {
@@ -66,12 +66,9 @@ class FileController extends Controller
                     'can_edit' => true,
                 ]);
             } 
-            return response()->json([
-                'message' => 'File created successfully.',
-                'file' => $file
-            ], 201);
+            return response()->json($file);
         }catch(QueryException $e){
-            return \response()->json(["message"=>"An error ocurd:".$e->getMessage()],500);
+            return response()->json(["message"=>"An error ocurd:".$e->getMessage()],500);
         }
     }
 

@@ -17,7 +17,7 @@ function EditModal({ show, onClose, handleEdit, id }) {
     <div className="modal-backdrop">
       <div className="modal-content">
         <h2>Change position</h2>
-        <form>
+        <form onSubmit={handleClick}>
           <div className="modal-input-box">
             <label htmlFor="name">Position:</label>
             <input
@@ -29,7 +29,7 @@ function EditModal({ show, onClose, handleEdit, id }) {
               required
             />
           </div>
-          <button onClick={handleClick} className="submit-btn" type="submit">
+          <button className="submit-btn" type="submit">
             Edit
           </button>
         </form>

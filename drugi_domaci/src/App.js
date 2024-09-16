@@ -15,40 +15,51 @@ function App() {
     return savedUser ? JSON.parse(savedUser) : null;
   });
 
+  const [authToken, setAuthToken] = useState(() => {
+    const savedToken = localStorage.getItem("auth_token");
+    return savedToken ? savedToken : null;
+  });
   const [company, setCompany] = useState(null);
   const [employeesCount, setEmployeesCount] = useState(0);
   useEffect(() => {
     if (user) {
       localStorage.setItem("user", JSON.stringify(user));
 
-      fetch(`http://localhost:8000/companies?user_id=${user.id}`)
+      fetch(`http://localhost:8000/api/users/${user.id}/company`, {
+        method: "GET",
+        headers: {
+          "Content-Type": "application/json",
+          Authorization: `Bearer ${authToken}`,
+        },
+      })
         .then((response) => response.json())
         .then((data) => {
-          if (data.length > 0) {
-            setCompany(data[0]);
-          }
+          setCompany(data);
+          setEmployeesCount(data.employees.length);
         })
         .catch((error) => console.error("Error fetching company:", error));
     }
   }, [user]);
 
-  useEffect(() => {
-    if (company) {
-      fetch(`http://localhost:8000/employees?company_id=${company.id}`)
-        .then((response) => response.json())
-        .then((data) => {
-          setEmployeesCount(data.length);
-        })
-        .catch((error) => console.error("Error fetching employees:", error));
-    }
-  }, [company]);
+  // useEffect(() => {
+  //   if (company) {
+  //     fetch(`http://localhost:8000/employees?company_id=${company.id}`)
+  //       .then((response) => response.json())
+  //       .then((data) => {
+  //         setEmployeesCount(data.length);
+  //       })
+  //       .catch((error) => console.error("Error fetching employees:", error));
+  //   }
+  // }, [company]);
 
   return (
     <BrowserRouter className="container">
       <Routes>
         <Route
           path="/loginRegister"
-          element={<LoginRegister setUser={setUser} />}
+          element={
+            <LoginRegister setUser={setUser} setAuthToken={setAuthToken} />
+          }
         />
         <Route
           path="/createCompany"

@@ -4,28 +4,20 @@ import Button from "../Button/Button";
 import AddEmployeeModal from "../Employees/AddEmployeeModal";
 
 function Home({ company, employeesCount, setEmployeesCount, user_id }) {
-  const company_id = company?.id;
-
-  const addEmployee = ({
-    name,
-    position,
-    email,
-    password,
-    gender,
-    company_id,
-  }) => {
-    fetch("http://localhost:8000/employees", {
+  const addEmployee = ({ name, position, email, password, gender }) => {
+    fetch("http://localhost:8000/api/employees", {
       method: "POST",
       headers: {
+        Authorization: `Bearer ${localStorage.getItem("auth_token")}`,
         "Content-Type": "application/json",
       },
       body: JSON.stringify({
         name: name,
         position: position,
         email: email,
-        passowrd: password,
+        password: password,
         gender: gender,
-        company_id: company_id,
+        // company_id: company_id,
       }),
     })
       .then((response) => {
@@ -34,12 +26,15 @@ function Home({ company, employeesCount, setEmployeesCount, user_id }) {
         }
         return response.json();
       })
-      .then((data) => {})
+      .then((data) => {
+        if (data) {
+          setEmployeesCount(employeesCount + 1);
+          console.log(data);
+        }
+      })
       .catch((error) => {
         console.error("Error:", error);
       });
-
-    setEmployeesCount(employeesCount + 1);
   };
 
   const [showModalEmployee, setShowModalEmployee] = useState(false);
@@ -60,7 +55,6 @@ function Home({ company, employeesCount, setEmployeesCount, user_id }) {
         show={showModalEmployee}
         onClose={toggleModalEmployee}
         handleAdd={addEmployee}
-        company_id={company_id}
       />
     </div>
   );

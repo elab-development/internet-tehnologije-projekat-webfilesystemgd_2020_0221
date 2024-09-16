@@ -20,9 +20,10 @@ function AddFileModal({ show, onClose, handleAdd, user_id }) {
     return null;
   }
 
-  const handleClick = () => {
+  const handleClick = (e) => {
+    e.preventDefault();
     setPath(`/${name}`);
-    handleAdd({ name, mime_type, size, path, user_id });
+    handleAdd({ name, mime_type, size, path });
     onClose();
   };
   return (
@@ -59,10 +60,7 @@ function AddFileModal({ show, onClose, handleAdd, user_id }) {
               }}
             />
           </div>
-          <button
-            className={styles.submit_btn}
-            type={"submit"}
-          >
+          <button className={styles.submit_btn} type={"submit"}>
             Add
           </button>
         </form>

@@ -32,6 +32,9 @@ class EmployeeController extends Controller
      */
     public function store(Request $request)
     {
+        try{
+
+        
         $validated=$request->validate([
             'name'=>'required|string|max:255',
             'position'=>'required|string|max:255',
@@ -52,10 +55,10 @@ class EmployeeController extends Controller
         $validated['password'] = bcrypt($validated['password']);
         $validated['company_id'] = $company->id;
         $employee = Employee::create($validated);
-        return response()->json([
-            'message' => 'Employee created successfully.',
-            'employee' => $employee
-        ], 201);
+        return response()->json($employee);
+    }catch(\Exception $e){
+        return response()->json(['message' => $e->getMessage()], 500);
+    }
     }
 
     /**
@@ -86,6 +89,7 @@ class EmployeeController extends Controller
         $validated=$request->validate([
             
             'position'=>'required|string|max:255',
+            'company_id'=>'required|integer',
             
         ]);
 
