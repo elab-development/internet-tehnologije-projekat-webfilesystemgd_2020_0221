@@ -1,0 +1,40 @@
+.home-wrapper {
+  padding: 20px;
+  background: #f7f7f7;
+  border-radius: 10px;
+  box-shadow: 0px 0px 15px rgba(0, 0, 0, 0.1);
+}
+
+.company-name {
+  font-size: 36px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.employee-count {
+  font-size: 18px;
+  color: #666;
+  margin-bottom: 20px;
+}
+
+.recent-activities {
+  margin-bottom: 20px;
+}
+
+.recent-activities h2 {
+  font-size: 24px;
+  color: #333;
+  margin-bottom: 10px;
+}
+
+.recent-activities ul {
+  list-style: none;
+  padding: 0;
+}
+
+.recent-activities ul li {
+  background: #eaeaea;
+  margin-bottom: 8px;
+  padding: 10px;
+  border-radius: 5px;
+}
